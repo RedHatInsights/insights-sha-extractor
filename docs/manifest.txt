@@ -1,0 +1,10 @@
+services-ccx/insights-sha-extractor:2169e48/app-common-python-0.1.8 https://github.com/RedHatInsights/insights-sha-extractor/blob/master/requirements.txt
+services-ccx/insights-sha-extractor:2169e48/boto3-1.14.27 https://github.com/RedHatInsights/insights-sha-extractor/blob/master/requirements.txt
+services-ccx/insights-sha-extractor:2169e48/insights-core-messaging-1.2.0 https://github.com/RedHatInsights/insights-sha-extractor/blob/master/requirements.txt
+services-ccx/insights-sha-extractor:2169e48/insights-core>=3.0.235-0.0.0 https://github.com/RedHatInsights/insights-sha-extractor/blob/master/requirements.txt
+services-ccx/insights-sha-extractor:2169e48/jsonschema-3.2.0 https://github.com/RedHatInsights/insights-sha-extractor/blob/master/requirements.txt
+services-ccx/insights-sha-extractor:2169e48/kafka-python-2.0.1 https://github.com/RedHatInsights/insights-sha-extractor/blob/master/requirements.txt
+services-ccx/insights-sha-extractor:2169e48/python-json-logger-0.1.11 https://github.com/RedHatInsights/insights-sha-extractor/blob/master/requirements.txt
+services-ccx/insights-sha-extractor:2169e48/requests-2.24.0 https://github.com/RedHatInsights/insights-sha-extractor/blob/master/requirements.txt
+services-ccx/insights-sha-extractor:2169e48/sentry-sdk-0.19.5 https://github.com/RedHatInsights/insights-sha-extractor/blob/master/requirements.txt
+services-ccx/insights-sha-extractor:2169e48/watchtower-0.8.0 https://github.com/RedHatInsights/insights-sha-extractor/blob/master/requirements.txt
