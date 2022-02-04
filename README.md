@@ -8,6 +8,7 @@
 
 * [Description](#description)
 * [Documentation](#documentation)
+* [Package manifest](#package-manifest)
 
 <!-- vim-markdown-toc -->
 
@@ -21,3 +22,7 @@ on Insights Core Messaging framework.
 ## Documentation
 
 Documentation is hosted on Github Pages <https://supreme-garbanzo-c43cccab.pages.github.io/>.
+
+## Package manifest
+
+Package manifest is available at [docs/manifest.txt](docs/manifest.txt).
