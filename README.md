@@ -2,6 +2,8 @@
 
 [![Python 3.7](https://img.shields.io/badge/python-3.7-blue.svg)](https://www.python.org/downloads/release/python-370/)
 
+[![GitHub Pages](https://img.shields.io/badge/%20-GitHub%20Pages-informational)](https://supreme-garbanzo-c43cccab.pages.github.io/)
+
 ## Description
 
 Insights SHA Extractor service intends to retrieve Insights gathered archives
