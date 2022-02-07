@@ -8,6 +8,7 @@
 
 * [Description](#description)
 * [Documentation](#documentation)
+* [Makefile targets](#makefile-targets)
 * [Package manifest](#package-manifest)
 
 <!-- vim-markdown-toc -->
@@ -22,6 +23,23 @@ on Insights Core Messaging framework.
 ## Documentation
 
 Documentation is hosted on Github Pages <https://supreme-garbanzo-c43cccab.pages.github.io/>.
+
+## Makefile targets
+
+```
+Usage: make <OPTIONS> ... <TARGETS>
+
+Available targets are:
+
+unit_tests           Run unit tests
+coverage             Run unit tests, display code coverage on terminal
+coverage-report      Run unit tests, generate code coverage as a HTML report
+documentation        Generate documentation for all sources
+shellcheck           Run shellcheck
+pycodestyle          Check code style of all Python sources
+pydocstyle           Check docstrings style of all Python sources
+help                 Show this help screen
+```
 
 ## Package manifest
 
