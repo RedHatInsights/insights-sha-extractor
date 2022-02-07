@@ -14,5 +14,5 @@ install:
   - pip install pycodestyle
   - pip install pydocstyle
 script:
-  - find . -type f -name "*.py" | xargs pycodestyle
-  - find . -type f -name "*.py" | xargs pydocstyle
+  - make pycodestyle
+  - make pydocstyle
