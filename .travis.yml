@@ -14,4 +14,4 @@ env: SKIP_INTERPRETER=true
 install:
   - pip install pycodestyle
 script:
-  - find . -type f -name "*.py" | xargs pylint 
+  - find . -type f -name "*.py" | xargs pycodestyle
