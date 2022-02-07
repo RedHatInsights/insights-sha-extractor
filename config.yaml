@@ -1,0 +1,76 @@
+plugins:
+  packages:
+    - insights.specs.default
+    - insights_sha_extractor
+    - pythonjsonlogger
+    - pythonjsonlogger.jsonlogger
+  configs:
+    - name: ccx_ocp_core.config.telemeter.TelemeterServiceConfig
+      enabled: false
+service:
+  extract_timeout:
+  extract_tmp_dir:
+  format: insights.formats._json.JsonFormat
+  target_components: []
+  consumer:
+    name: insights_sha_extractor.consumer.Consumer
+    kwargs:
+      incoming_topic: ${CDP_INCOMING_TOPIC:platform.upload.buckit}
+      group_id: ${CDP_GROUP_ID:insights_sha_extractor_app}
+      bootstrap_servers: ${CDP_CONSUMER_SERVER:["10.34.129.172:9092"]}
+      processing_timeout_s: 0
+      max_poll_records: 10
+      max_poll_interval_ms: 600000
+      heartbeat_interval_ms: 10000
+      session_timeout_ms: 20000
+      dead_letter_queue_topic: ${CDP_DEAD_LETTER_QUEUE_TOPIC:dead.letter.queue}
+  downloader:
+    name: insights_sha_extractor.http_downloader.HTTPDownloader
+    kwargs:
+      max_archive_size: 100MiB
+
+  publisher:
+    name: insights_sha_extractor.kafka_publisher.KafkaPublisher
+    kwargs:
+      outgoing_topic: ${CDP_OUTGOING_TOPIC:archive-results}
+      bootstrap_servers: ${CDP_PUBLISHER_SERVER:["10.34.129.172:9092"]}
+
+  logging:
+    version: 1
+    disable_existing_loggers: false
+    handlers:
+      default:
+        level: DEBUG
+        class: logging.StreamHandler
+        stream: ext://sys.stdout
+        formatter: json
+        filters:
+          - context_filter
+      logstash:
+        level: INFO
+        class: logstash.TCPLogstashHandler
+        host: "127.0.0.1"
+        port: 5000
+        version: 1
+    formatters:
+      brief:
+        format: "%(message)s"
+      json:
+        (): "pythonjsonlogger.jsonlogger.JsonFormatter"
+        format: "%(filename)s %(lineno)d %(process)d %(levelname)s %(asctime)s %(name)s %(message)s"
+      cloudwatch:
+        format: "%(filename)s %(levelname)s %(asctime)s %(name)s %(hostname)s %(mac_address)s %(message)s"
+    filters:
+      context_filter:
+        (): "ccx_data_pipeline.log_filter.LogFilter"
+    root:
+      handlers:
+        - default
+        - logstash
+    loggers:
+      insights_messaging:
+        level: DEBUG
+      insights:
+        level: WARNING
+      ccx_data_pipeline:
+        level: DEBUG
