@@ -46,8 +46,8 @@ def print_version():
         sys.version_info.micro,
     )
     logger.info(
-        "ccx-data-pipeline version: %s",
-        pkg_resources.get_distribution("ccx-data-pipeline").version,
+        "insights-sha-extractor version: %s",
+        pkg_resources.get_distribution("insights-sha-extractor").version,
     )
 
 
@@ -89,6 +89,6 @@ def insights_sha_extractor():
     logger = logging.getLogger(__name__)
     logger.error(
         "Application configuration not provided. \
-        Use 'ccx-data-pipeline <config>' to run the application",
+        Use 'insights-sha-extractor <config>' to run the application",
     )
     sys.exit(1)
