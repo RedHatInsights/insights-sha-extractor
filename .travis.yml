@@ -6,17 +6,22 @@ python:
   - "3.8-dev"  # 3.8 development branch
   - "nightly"  # nightly build
 
-# Pycodestyle part
-# needed to work correctly with Python 3 shebang
-env: SKIP_INTERPRETER=true
-install:
-  - pip install pycodestyle
-  - pip install pydocstyle
-  - pip install pytest-cov
-  - pip install -r requirements.txt
-script:
-  - make pycodestyle
-  - make pydocstyle
+jobs:
+  include:
+    - stage: style
+      install:
+       - pip install pycodestyle
+       - pip install pydocstyle
+      script:
+        - make pycodestyle
+        - make pydocstyle
+    - stage: unit tests
+      install:
+        - pip install pytest-cov
+        - pip install -r requirements.txt
+      script:
+        - pytest -v --cov=insights_sha_extractor
 
-script:
-  - pytest -v --cov=insights_sha_extractor
+stages:
+  - style
+  - unit tests
