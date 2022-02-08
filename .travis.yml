@@ -12,8 +12,6 @@ env: SKIP_INTERPRETER=true
 install:
   - pip install pycodestyle
   - pip install pydocstyle
-  - pip install black
 script:
   - make pycodestyle
   - make pydocstyle
-  - make pyformat
