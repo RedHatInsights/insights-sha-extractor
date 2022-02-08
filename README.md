@@ -38,6 +38,7 @@ documentation        Generate documentation for all sources
 shellcheck           Run shellcheck
 pycodestyle          Check code style of all Python sources
 pydocstyle           Check docstrings style of all Python sources
+pyformat             Check formatting of all Python sources
 help                 Show this help screen
 ```
 
