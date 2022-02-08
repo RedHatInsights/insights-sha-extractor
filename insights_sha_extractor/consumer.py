@@ -310,10 +310,7 @@ class Consumer(ICMConsumer):
         and sends an alert if it is the case
         """
         while True:
-            if (
-                time.time() - self.last_received_message_time
-                >= MAX_ELAPSED_TIME_BETWEEN_MESSAGES
-            ):
+            if (time.time() - self.last_received_message_time >= MAX_ELAPSED_TIME_BETWEEN_MESSAGES):
                 last_received_time_str = time.strftime(
                     "%Y-%m-%d- %H:%M:%S", time.gmtime(self.last_received_message_time)
                 )
