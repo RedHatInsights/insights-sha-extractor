@@ -12,6 +12,7 @@ env: SKIP_INTERPRETER=true
 install:
   - pip install pycodestyle
   - pip install pydocstyle
+  - pip install pytest-cov
 script:
   - make pycodestyle
   - make pydocstyle
