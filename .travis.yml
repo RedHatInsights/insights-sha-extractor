@@ -15,3 +15,6 @@ install:
 script:
   - make pycodestyle
   - make pydocstyle
+
+script:
+  - pytest -v --cov=insights_sha_extractor
