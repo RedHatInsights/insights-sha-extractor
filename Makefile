@@ -36,6 +36,10 @@ pydocstyle: ## Check docstrings style of all Python sources
 	echo "Checking docstrings style of all Python sources"
 	find . -type f -name "*.py" | xargs pydocstyle
 
+pyformat: ## Check formatting of all Python sources
+	echo "Checking formatting of all Python sources"
+	find . -type f -name "*.py" | xargs black --check
+
 help: ## Show this help screen
 	@echo 'Usage: make <OPTIONS> ... <TARGETS>'
 	@echo ''
