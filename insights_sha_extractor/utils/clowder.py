@@ -27,7 +27,7 @@ def apply_clowder_config(manifest):
     config["service"]["consumer"]["kwargs"]["bootstrap_servers"] = kafka_url
     config["service"]["publisher"]["kwargs"]["bootstrap_servers"] = kafka_url
     pt_watcher = (
-        "ccx_data_pipeline.watchers.payload_tracker_watcher.PayloadTrackerWatcher"
+        "insights_sha_extractor.watchers.payload_tracker_watcher.PayloadTrackerWatcher"
     )
     for watcher in config["service"]["watchers"]:
         if watcher["name"] == pt_watcher:
