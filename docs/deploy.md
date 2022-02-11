@@ -10,5 +10,3 @@ environments: STAGE and PROD. The code should pass tests in STAGE env before it
 goes to PROD. Console.redhat.com team uses jenkins, OCP and
 [ocdeployer](https://github.com/bsquizz/ocdeployer) for code deploying. All
 deployment configs are stored in
-[e2e-deploy](https://github.com/RedHatInsights/e2e-deploy) git repository.
-
