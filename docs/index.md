@@ -13,5 +13,5 @@ on Insights Core Messaging framework.
 # Integration with other services
 
 Please look at [CCX Docs/Customer
-Services](https://ccx.pages.redhat.com/ccx-docs/) with
+Services](https://ccx.pages.redhat.com/ccx-docs/) for
 an explanation how the CCX Data Pipeline is connected with other services.

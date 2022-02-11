@@ -112,7 +112,7 @@ The fields come from:
 **NOTE**
 
 The `LastChecked` attribute is a timestamp containing the zone designator Z
-(aka "Zulu time" or more informally "Greenwich Mean Time")
+(aka "Zulu time" or more formally "Greenwich Mean Time")
 
 ---
 

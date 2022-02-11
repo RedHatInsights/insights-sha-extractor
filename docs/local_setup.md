@@ -4,7 +4,7 @@ nav_order: 5
 ---
 # Local setup
 
-There is a `docker-compose` configuration that provisions a minimal stack of
+There is a [docker-compose](https://gitlab.cee.redhat.com/insights-qe/iqe-ccx-plugin/blob/master/docker-compose.yml) configuration that provisions a minimal stack of
 Insight Platform and a postgres database. You can download it here
 https://gitlab.cee.redhat.com/insights-qe/iqe-ccx-plugin/blob/master/docker-compose.yml
 
@@ -12,8 +12,8 @@ https://gitlab.cee.redhat.com/insights-qe/iqe-ccx-plugin/blob/master/docker-comp
 
 * minio requires `../minio/data/` and `../minio/config` directories to be created
 * edit localhost line in your `/etc/hosts`:  `127.0.0.1       localhost kafka minio`
-* `ingress` image should present on your machine. You can build it locally from
-  this repo https://github.com/RedHatInsights/insights-ingress-go
+* `ingress` image should be present on your machine. You can build it locally from
+  this repository [https://github.com/RedHatInsights/insights-ingress-go](https://github.com/RedHatInsights/insights-ingress-go)
   
 ## Usage
 
@@ -38,7 +38,7 @@ or you can use integration tests suite. More details are
 In order to provide a local **LogStash** service than can be used for local
 testing, please follow the next steps:
 
-1. Clone repository https://github.com/deviantony/docker-elk
+1. Clone repository [https://github.com/deviantony/docker-elk](https://github.com/deviantony/docker-elk).
 2. Start the LogStash instance with `docker-compose up` in it's directory.
 
 Don't forget to use the latest docker version(fedora repository doesn't have the latest version).
