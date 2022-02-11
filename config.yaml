@@ -4,9 +4,6 @@ plugins:
     - insights_sha_extractor
     - pythonjsonlogger
     - pythonjsonlogger.jsonlogger
-  configs:
-    - name: ccx_ocp_core.config.telemeter.TelemeterServiceConfig
-      enabled: false
 service:
   extract_timeout:
   extract_tmp_dir:
@@ -62,7 +59,7 @@ service:
         format: "%(filename)s %(levelname)s %(asctime)s %(name)s %(hostname)s %(mac_address)s %(message)s"
     filters:
       context_filter:
-        (): "ccx_data_pipeline.log_filter.LogFilter"
+        (): "insights_sha_extractor.log_filter.LogFilter"
     root:
       handlers:
         - default
@@ -72,5 +69,5 @@ service:
         level: DEBUG
       insights:
         level: WARNING
-      ccx_data_pipeline:
+      insights_sha_extractor:
         level: DEBUG
