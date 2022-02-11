@@ -4,10 +4,10 @@ nav_order: 8
 ---
 # Deploy
 
-`insights-sha-extractor` runs in [cloud.redhat.com](https://cloud.redhat.com) and
+`insights-sha-extractor` runs in [console.redhat.com](https://console.redhat.com) and
 it's a part of the same testing and promoting routines. There are two
 environments: STAGE and PROD. The code should pass tests in STAGE env before it
-goes to PROD. cloud.redhat.com team uses jenkins, OCP and
+goes to PROD. Console.redhat.com team uses jenkins, OCP and
 [ocdeployer](https://github.com/bsquizz/ocdeployer) for code deploying. All
 deployment configs are stored in
 [e2e-deploy](https://github.com/RedHatInsights/e2e-deploy) git repository.

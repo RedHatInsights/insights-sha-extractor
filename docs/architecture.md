@@ -6,7 +6,7 @@ nav_order: 1
 
 This service is built on top of [insights-core-messaging
 framework](https://github.com/RedHatInsights/insights-core-messaging) and will
-be deployed and run inside [cloud.redhat.com](https://cloud.redhat.com).
+be deployed and run inside [console.redhat.com](https://console.redhat.com).
 
 ## Component diagram
 
