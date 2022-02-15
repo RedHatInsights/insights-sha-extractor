@@ -10,7 +10,7 @@ service:
   format: insights.formats._json.JsonFormat
   target_components: []
   consumer:
-    name: insights_sha_extractor.consumer.Consumer
+    name: ccx_messaging.consumers.consumer.Consumer
     kwargs:
       incoming_topic: ${CDP_INCOMING_TOPIC:platform.upload.buckit}
       group_id: ${CDP_GROUP_ID:insights_sha_extractor_app}
@@ -22,12 +22,15 @@ service:
       session_timeout_ms: 20000
       dead_letter_queue_topic: ${CDP_DEAD_LETTER_QUEUE_TOPIC:dead.letter.queue}
   downloader:
-    name: insights_sha_extractor.http_downloader.HTTPDownloader
+    name: ccx_messaging.downloaders.http_downloader.HTTPDownloader
     kwargs:
       max_archive_size: 100MiB
-
+  engine:
+    name: ccx_messaging.engines.sha_extractor_engine.SHAExtractorEngine
+    kwargs:
+      extract_timeout: 10
   publisher:
-    name: insights_sha_extractor.kafka_publisher.KafkaPublisher
+    name: ccx_messaging.publishers.sha_publisher.SHAPublisher
     kwargs:
       outgoing_topic: ${CDP_OUTGOING_TOPIC:archive-results}
       bootstrap_servers: ${CDP_PUBLISHER_SERVER:["10.34.129.172:9092"]}
@@ -66,6 +69,8 @@ service:
         - logstash
     loggers:
       insights_messaging:
+        level: DEBUG
+      ccx_messaging:
         level: DEBUG
       insights:
         level: WARNING
