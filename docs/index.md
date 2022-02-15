@@ -1,8 +1,6 @@
 ---
-layout: default
-nav_order: 0
+layout: home
 ---
-
 # Description
 
 Insights SHA Extractor service intends to retrieve Insights gathered archives
