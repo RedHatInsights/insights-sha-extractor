@@ -2,10 +2,20 @@ title: Insights SHA extractor
 description: SHA extraction service
 baseurl: "/insights-sha-exctractor"
 url: "https://supreme-garbanzo-c43cccab.pages.github.io"
-theme: jekyll-theme-minimal
 
 heading_anchors: true
 search_enabled: false
 
 footer_content: "Copyright &copy; 2022 Red Hat, Inc.</a>"
+
+# Build settings
+markdown: kramdown
+remote_theme: pmarsceill/just-the-docs
+plugins:
+  - jekyll-remote-theme
+
+exclude:
+  - Gemfile
+  - Gemfile.lock
+  - vendor/
 
