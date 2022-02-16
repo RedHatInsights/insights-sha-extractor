@@ -1,0 +1,195 @@
+---
+apiVersion: v1
+kind: Template
+metadata:
+  name: ccx-sha-extractor
+objects:
+
+# TODO env. variables used
+# TODO env. variables passed
+
+- kind: HorizontalPodAutoscaler
+  apiVersion: autoscaling/v1
+  metadata:
+    labels:
+      app: ccx-data-pipeline
+    name: ccx-sha-extractor
+  spec:
+    minReplicas: ${{MIN_REPLICAS}}
+    maxReplicas: ${{MAX_REPLICAS}}
+    scaleTargetRef:
+      apiVersion: apps/v1
+      kind: Deployment
+      name: ccx-sha-extractor
+    targetCPUUtilizationPercentage: 50
+
+- apiVersion: cloud.redhat.com/v1alpha1
+  kind: ClowdApp
+  metadata:
+    name: ccx-sha-extractor
+  spec:
+    envName: ${ENV_NAME}
+    testing:
+      iqePlugin: ccx
+    deployments:
+      - name: ccx-sha-extractor
+        minReplicas: ${{MIN_REPLICAS}}
+        webServices:
+          public:
+            enabled: false
+          private:
+            enabled: false
+          metrics:
+            enabled: true
+        podSpec:
+          env:
+            - name: CONFIG_PATH
+              value: /data/config.yaml
+            - name: CLOUDWATCH_ENABLED
+              value: ${CLOUDWATCH_ENABLED}
+            - name: CLOUDWATCH_DEBUG
+              value: ${CLOUDWATCH_DEBUG}
+            - name: CLOWDER_ENABLED
+              value: ${CLOWDER_ENABLED}
+            - name: CDP_INCOMING_TOPIC
+              value: platform.upload.buckit
+            - name: CDP_GROUP_ID
+              value: ccx_sha_extractor_app
+            - name: CDP_CONSUMER_SERVER
+              value: mq-kafka:29092
+            - name: CDP_DEAD_LETTER_QUEUE_TOPIC
+              value: ccx.sha.extractor.dead.letter.queue
+            - name: CDP_OUTGOING_TOPIC
+              value: ccx.image.sha.results 
+            - name: CDP_PUBLISHER_SERVER
+              value: mq-kafka:29092
+            - name: SENTRY_DSN
+              valueFrom:
+                secretKeyRef:
+                  key: SENTRY_DSN
+                  name: sentry-dsn
+                  optional: true
+            - name: SENTRY_CATCH_WARNINGS
+              value: '1'
+          image: ${IMAGE}:${IMAGE_TAG}
+          resources:
+            requests:
+              cpu: 500m
+              memory: 512Mi
+            limits:
+              cpu: 1000m
+              memory: 1024Mi
+
+    kafkaTopics:
+      - replicas: 16
+        partitions: 3
+        topicName: platform.upload.buckit
+      - replicas: 1
+        partitions: 1
+        topicName: ccx.sha.extractor.dead.letter.queue
+      - replicas: 3
+        partitions: 2
+        topicName: ccx.image.sha.results
+
+- kind: ConfigMap
+  apiVersion: v1
+  metadata:
+    labels:
+      app: ccx-sha-extractor
+    name: ccx-sha-extractor-config-map
+  data:
+    config.yaml: |-
+      plugins:
+        packages:
+          - insights.specs.default
+          - insights_sha_extractor
+          - pythonjsonlogger
+          - pythonjsonlogger.jsonlogger
+      service:
+        extract_timeout:
+        extract_tmp_dir:
+        format: insights.formats._json.JsonFormat
+        target_components: []
+        consumer:
+          name: insights_sha_extractor.consumer.Consumer
+          kwargs:
+            incoming_topic: ${CDP_INCOMING_TOPIC}
+            group_id: ${CDP_GROUP_ID}
+            bootstrap_servers: ${CDP_CONSUMER_SERVER}
+            processing_timeout_s: 0
+            max_poll_records: 10
+            max_poll_interval_ms: 600000
+            heartbeat_interval_ms: 10000
+            session_timeout_ms: 20000
+            dead_letter_queue_topic: ${CDP_DEAD_LETTER_QUEUE_TOPIC}
+
+        downloader:
+          name: insights_sha_extractor.http_downloader.HTTPDownloader
+          kwargs:
+            max_archive_size: 100MiB
+
+        publisher:
+          name: insights_sha_extractor.kafka_publisher.KafkaPublisher
+          kwargs:
+            outgoing_topic: ${CDP_OUTGOING_TOPIC}
+            bootstrap_servers: ${CDP_PUBLISHER_SERVER}
+
+        logging:
+          version: 1
+          disable_existing_loggers: false
+          handlers:
+            default:
+              level: DEBUG
+              class: logging.StreamHandler
+              stream: ext://sys.stdout
+              formatter: json
+              filters:
+                - context_filter
+          formatters:
+            brief:
+              format: "%(message)s"
+            json:
+              (): "pythonjsonlogger.jsonlogger.JsonFormatter"
+              format: "%(filename)s %(lineno)d %(process)d %(levelname)s %(asctime)s %(name)s %(message)s"
+            cloudwatch:
+              format: "%(filename)s %(levelname)s %(asctime)s %(name)s %(hostname)s %(mac_address)s %(message)s"
+          filters:
+            context_filter:
+              (): "insights_sha_extractor.log_filter.LogFilter"
+          root:
+            handlers:
+              - default
+          loggers:
+            insights_messaging:
+              level: DEBUG
+            insights:
+              level: WARNING
+            insights_sha_extractor:
+              level: DEBUG
+
+
+parameters:
+- description: Image name
+  name: IMAGE
+  value: quay.io/cloudservices/ccx-sha-extractor
+- description: Image tag
+  name: IMAGE_TAG
+  required: true
+- description: Determines Clowder deployment
+  name: CLOWDER_ENABLED
+  value: "true"
+- description: ClowdEnv Name
+  name: ENV_NAME
+  requred: true
+- description: Minimum number of pods to use when autoscaling is enabled
+  name: MIN_REPLICAS
+  value: '1'
+- description: Minimum number of pods to use when autoscaling is enabled
+  name: MAX_REPLICAS
+  value: '1'
+- name: CLOUDWATCH_ENABLED
+  value: "true"
+  required: true
+- name: CLOUDWATCH_DEBUG
+  value: "false"
+  required: true
