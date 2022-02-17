@@ -45,24 +45,20 @@ objects:
           env:
             - name: CONFIG_PATH
               value: /data/config.yaml
-            - name: CLOUDWATCH_ENABLED
-              value: ${CLOUDWATCH_ENABLED}
-            - name: CLOUDWATCH_DEBUG
-              value: ${CLOUDWATCH_DEBUG}
             - name: CLOWDER_ENABLED
               value: ${CLOWDER_ENABLED}
             - name: CDP_INCOMING_TOPIC
-              value: platform.upload.buckit
+              value: ${CDP_INCOMING_TOPIC}
             - name: CDP_GROUP_ID
-              value: ccx_sha_extractor_app
+              value: ${CDP_GROUP_ID}
             - name: CDP_CONSUMER_SERVER
-              value: mq-kafka:29092
+              value: ${CDP_CONSUMER_SERVER}
             - name: CDP_DEAD_LETTER_QUEUE_TOPIC
-              value: ccx.sha.extractor.dead.letter.queue
+              value: ${CDP_DEAD_LETTER_QUEUE_TOPIC}
             - name: CDP_OUTGOING_TOPIC
-              value: ccx.image.sha.results 
+              value: ${CDP_OUTGOING_TOPIC}
             - name: CDP_PUBLISHER_SERVER
-              value: mq-kafka:29092
+              value: ${CDP_PUBLISHER_SERVER}
             - name: SENTRY_DSN
               valueFrom:
                 secretKeyRef:
@@ -83,13 +79,13 @@ objects:
     kafkaTopics:
       - replicas: 16
         partitions: 3
-        topicName: platform.upload.buckit
+        topicName: ${CDP_INCOMING_TOPIC}
       - replicas: 1
         partitions: 1
-        topicName: ccx.sha.extractor.dead.letter.queue
+        topicName: ${CDP_DEAD_LETTER_QUEUE_TOPIC}
       - replicas: 3
         partitions: 2
-        topicName: ccx.image.sha.results
+        topicName: {CDP_OUTGOING_TOPIC}
 
 - kind: ConfigMap
   apiVersion: v1
@@ -180,16 +176,28 @@ parameters:
   value: "true"
 - description: ClowdEnv Name
   name: ENV_NAME
-  requred: true
+  required: true
 - description: Minimum number of pods to use when autoscaling is enabled
   name: MIN_REPLICAS
   value: '1'
 - description: Minimum number of pods to use when autoscaling is enabled
   name: MAX_REPLICAS
   value: '1'
-- name: CLOUDWATCH_ENABLED
-  value: "true"
+- name: CDP_INCOMING_TOPIC
+  value: platform.upload.buckit
   required: true
-- name: CLOUDWATCH_DEBUG
-  value: "false"
+- name: CDP_OUTGOING_TOPIC
+  value: ccx.image.sha.results
+  required: true
+- name: CDP_DEAD_LETTER_QUEUE_TOPIC
+  value: ccx.sha.extractor.dead.letter.queue
+  required: true
+- name: CDP_GROUP_ID
+  value: ccx_sha_extractor_app
+  required: true
+- name: CDP_CONSUMER_SERVER
+  value: mq-kafka:29092
+  required: true
+- name: CDP_PUBLISHER_SERVER
+  value: mq-kafka:29092
   required: true
