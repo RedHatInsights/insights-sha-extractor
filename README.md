@@ -46,3 +46,4 @@ help                 Show this help screen
 ## Package manifest
 
 Package manifest is available at [docs/manifest.txt](docs/manifest.txt).
+
