@@ -42,7 +42,7 @@ objects:
         podSpec:
           env:
             - name: CONFIG_PATH
-              value: /data/config.yaml
+              value: /ccx-sha-extractor/config.yaml
             - name: CLOWDER_ENABLED
               value: ${CLOWDER_ENABLED}
             - name: CDP_INCOMING_TOPIC
