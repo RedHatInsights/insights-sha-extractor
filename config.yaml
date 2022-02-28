@@ -1,5 +1,6 @@
 plugins:
   packages:
+    - ccx_messaging
     - insights.specs.default
     - insights_sha_extractor
     - pythonjsonlogger
@@ -34,6 +35,11 @@ service:
     kwargs:
       outgoing_topic: ${CDP_OUTGOING_TOPIC:archive-results}
       bootstrap_servers: ${CDP_PUBLISHER_SERVER:["10.34.129.172:9092"]}
+  watchers:
+    - name: ccx_messaging.watchers.payload_tracker_watcher.PayloadTrackerWatcher
+      kwargs:
+        bootstrap_servers: mq-kafka:29092
+        topic: platform.payload-status
 
   logging:
     version: 1
