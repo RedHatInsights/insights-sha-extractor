@@ -102,6 +102,7 @@ objects:
     config.yaml: |-
       plugins:
         packages:
+          - ccx_messaging
           - insights.specs.default
           - insights_sha_extractor
           - pythonjsonlogger
@@ -112,7 +113,7 @@ objects:
         format: insights.formats._json.JsonFormat
         target_components: []
         consumer:
-          name: insights_sha_extractor.consumer.Consumer
+          name: ccx_messaging.consumers.consumer.Consumer
           kwargs:
             incoming_topic: ${CDP_INCOMING_TOPIC}
             group_id: ${CDP_GROUP_ID}
@@ -125,15 +126,26 @@ objects:
             dead_letter_queue_topic: ${CDP_DEAD_LETTER_QUEUE_TOPIC}
 
         downloader:
-          name: insights_sha_extractor.http_downloader.HTTPDownloader
+          name: ccx_messaging.downloaders.http_downloader.HTTPDownloader
           kwargs:
             max_archive_size: 100MiB
 
+        engine:
+          name: ccx_messaging.engines.sha_extractor_engine.SHAExtractorEngine
+          kwargs:
+            extract_timeout: 10
+
         publisher:
-          name: insights_sha_extractor.kafka_publisher.KafkaPublisher
+          name: ccx_messaging.publishers.sha_publisher.SHAPublisher
           kwargs:
             outgoing_topic: ${CDP_OUTGOING_TOPIC}
             bootstrap_servers: ${CDP_PUBLISHER_SERVER}
+        
+        watchers:
+          - name: ccx_messaging.watchers.payload_tracker_watcher.PayloadTrackerWatcher
+            kwargs:
+              bootstrap_servers: mq-kafka:29092
+              topic: platform.payload-status
 
         logging:
           version: 1
