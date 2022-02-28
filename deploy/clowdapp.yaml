@@ -66,6 +66,13 @@ objects:
             - name: SENTRY_CATCH_WARNINGS
               value: '1'
           image: ${IMAGE}:${IMAGE_TAG}
+          volumeMounts:
+            - mountPath: /data
+              name: ccx-sha-extractor-config
+          volumes:
+            - configMap:
+                name: ccx-sha-extractor-config-map
+              name: ccx-sha-extractor-config
           resources:
             requests:
               cpu: 500m
