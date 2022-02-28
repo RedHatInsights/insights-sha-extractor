@@ -3,7 +3,7 @@
 # --------------------------------------------
 # Options that must be configured by app owner
 # --------------------------------------------
-export APP_NAME="ccx-sha-extractor"  # name of app-sre "application" folder this component lives in
+export APP_NAME="ccx-data-pipeline"  # name of app-sre "application" folder this component lives in
 export COMPONENT_NAME="ccx-sha-extractor"
 export IMAGE="quay.io/cloudservices/ccx-sha-extractor"
 
