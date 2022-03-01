@@ -175,6 +175,8 @@ objects:
           loggers:
             insights_messaging:
               level: DEBUG
+            ccx_messaging:
+              level: DEBUG
             insights:
               level: WARNING
             insights_sha_extractor:
