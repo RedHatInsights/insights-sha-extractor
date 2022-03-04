@@ -13,9 +13,9 @@ All methods meant to be used by end-user **must be documented**; **no exceptions
 Before you submit your pull request, please consider the following guidelines:
 
 1) Fork the repository and clone your fork:
-    1) Open the following URL in your browser: <https://github.com/RedHatInsights/insights-sha-extractor/>.
+    1) Open the following URL in your browser: <https://gitlab.cee.redhat.com/ccx/ccx-sha-extractor>.
     1) Click on the "Fork" button (near the top-right corner).
-    1) Open your forked repository in browser: `https://github/YOUR-USERNAME/insights-sha-extractor/`
+    1) Open your forked repository in browser: `https://gitlab.cee.redhat.com/YOUR-USERNAME/ccx-sha-extractor`
     1) Click on the green "Clone or download" button and copy the clone URL of your fork of the repository.
     1) Clone the repository to get a local copy that you can edit:
 
