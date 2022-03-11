@@ -100,7 +100,7 @@ data:
           "targets": [
             {
               "exemplar": true,
-              "expr": "sum (rate (container_cpu_usage_seconds_total{namespace=\"$namespace\",pod=~\"insights-sha-extractor-.*\"}[1m])) by (pod)\n",
+              "expr": "sum (rate (container_cpu_usage_seconds_total{namespace=\"$namespace\",pod=~\"ccx-sha-extractor-.*\"}[1m])) by (pod)\n",
               "interval": "",
               "legendFormat": "",
               "refId": "A"
@@ -197,7 +197,7 @@ data:
           "targets": [
             {
               "exemplar": true,
-              "expr": "sum (container_memory_working_set_bytes{namespace=\"$namespace\",pod=~\"insights-sha-extractor-.*\"}) by (pod)",
+              "expr": "sum (container_memory_working_set_bytes{namespace=\"$namespace\",pod=~\"ccx-sha-extractor-.*\"}) by (pod)",
               "interval": "",
               "legendFormat": "",
               "refId": "A"
@@ -294,7 +294,7 @@ data:
           "targets": [
             {
               "exemplar": true,
-              "expr": "sum(rate(container_network_receive_bytes_total{namespace=\"$namespace\", pod=~\"insights-sha-extractor-.*\"}[1m])) by (pod)",
+              "expr": "sum(rate(container_network_receive_bytes_total{namespace=\"$namespace\", pod=~\"ccx-sha-extractor-.*\"}[1m])) by (pod)",
               "interval": "",
               "legendFormat": "",
               "refId": "A"
@@ -391,7 +391,7 @@ data:
           "targets": [
             {
               "exemplar": true,
-              "expr": "sum(rate(container_network_transmit_bytes_total{namespace=\"$namespace\", pod=~\"insights-sha-extractor-.*\"}[1m])) by (pod)",
+              "expr": "sum(rate(container_network_transmit_bytes_total{namespace=\"$namespace\", pod=~\"ccx-sha-extractor-.*\"}[1m])) by (pod)",
               "interval": "",
               "legendFormat": "",
               "refId": "A"
