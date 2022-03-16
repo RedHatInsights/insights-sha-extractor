@@ -10,6 +10,11 @@ if [[ -z "$QUAY_USER" || -z "$QUAY_TOKEN" ]]; then
     exit 1
 fi
 
+if [[ -z "$RH_REGISTRY_USER" || -z "$RH_REGISTRY_TOKEN" ]]; then
+    echo "RH_REGISTRY_USER and RH_REGISTRY_TOKEN must be set"
+    exit 1
+fi
+
 DOCKER_CONF="$PWD/.docker"
 mkdir -p "$DOCKER_CONF"
 docker --config="$DOCKER_CONF" login -u="$QUAY_USER" -p="$QUAY_TOKEN" quay.io
