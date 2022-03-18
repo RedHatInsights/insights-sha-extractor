@@ -40,6 +40,9 @@ service:
       kwargs:
         bootstrap_servers: mq-kafka:29092
         topic: platform.payload-status
+    - name: ccx_messaging.watchers.stats_watcher.StatsWatcher
+      kwargs:
+        prometheus_port: 8000
 
   logging:
     version: 1
