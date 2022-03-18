@@ -529,7 +529,7 @@ data:
       },
       "timezone": "",
       "title": "CCX Insights SHA Extractor",
-      "uid": "playground",
+      "uid": "shaextractor",
       "version": 1
     }
 kind: ConfigMap
