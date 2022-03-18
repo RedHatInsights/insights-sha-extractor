@@ -146,6 +146,9 @@ objects:
             kwargs:
               bootstrap_servers: mq-kafka:29092
               topic: platform.payload-status
+          - name: ccx_messaging.watchers.stats_watcher.StatsWatcher
+            kwargs:
+              prometheus_port: 8000
 
         logging:
           version: 1
@@ -182,6 +185,25 @@ objects:
             insights_sha_extractor:
               level: DEBUG
 
+- kind: Service
+  apiVersion: v1
+  metadata:
+    annotations:
+      prometheus.io/path: /metrics
+      prometheus.io/port: "8000"
+      prometheus.io/scheme: http
+      prometheus.io/scrape: "true"
+    name: ccx-sha-extractor-prometheus-exporter
+    labels:
+      app: ccx-sha-extractor
+  spec:
+    ports:
+      - name: ccx-sha-extractor-port-metrics
+        port: 8000
+        protocol: TCP
+        targetPort: 8000
+    selector:
+      app: ccx-sha-extractor
 
 parameters:
 - description: Image name
