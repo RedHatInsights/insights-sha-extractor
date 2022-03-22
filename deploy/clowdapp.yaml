@@ -65,6 +65,34 @@ objects:
                   optional: true
             - name: SENTRY_CATCH_WARNINGS
               value: '1'
+            - name: LOGGING_TO_CW_ENABLED
+              value: "True"
+            - name: CW_STREAM_NAME
+              value: ${CSE_LOG_STREAM}
+            - name: AWS_REGION_NAME
+              valueFrom:
+                secretKeyRef:
+                  name: cloudwatch
+                  key: aws_region
+                  optional: true
+            - name: CW_LOG_GROUP
+              valueFrom:
+                secretKeyRef:
+                  name: cloudwatch
+                  key: log_group_name
+                  optional: true
+            - name: CW_AWS_ACCESS_KEY_ID
+              valueFrom:
+                secretKeyRef:
+                  name: cloudwatch
+                  key: aws_access_key_id
+                  optional: true
+            - name: CW_AWS_SECRET_ACCESS_KEY
+              valueFrom:
+                secretKeyRef:
+                  name: cloudwatch
+                  key: aws_secret_access_key
+                  optional: true
           image: ${IMAGE}:${IMAGE_TAG}
           volumeMounts:
             - mountPath: /data
@@ -242,3 +270,8 @@ parameters:
 - name: CDP_PUBLISHER_SERVER
   value: mq-kafka:29092
   required: true
+- name: CLOUDWATCH_DEBUG
+  value: "false"
+  required: true
+- name: CSE_LOG_STREAM
+  value: "ccx-sha-extractor"
