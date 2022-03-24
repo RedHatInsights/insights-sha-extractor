@@ -116,8 +116,6 @@ def get_mac_address():
 
     # finally format it to the human readable format
     if mac_address is not None:
-        mac_address = ":".join(
-            reversed([hex((mac_address >> i * 8) & 0xFF)[2:] for i in range(6)])
-        )
+        mac_address = ":".join(reversed([hex((mac_address >> i * 8) & 0xFF)[2:] for i in range(6)]))
 
     return mac_address

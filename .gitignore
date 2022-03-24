@@ -1,0 +1,12 @@
+.tox
+*egg-info
+*~
+.eggs/
+env/
+.DS_Store
+__pycache__/
+/.vscode/
+/build/
+/dist/
+/venv/
+*.pyc
