@@ -8,7 +8,7 @@ COMPONENT_NAME="ccx-sha-extractor"
 IMAGE="quay.io/cloudservices/ccx-sha-extractor"
 COMPONENTS="ccx-data-pipeline ccx-insights-results insights-content-service insights-results-smart-proxy ccx-sha-extractor"  # space-separated list of components to laod
 COMPONENTS_W_RESOURCES="ccx-sha-extractor"  # component to keep
-CACHE_FROM_LATEST_IMAGE="true"
+CACHE_FROM_LATEST_IMAGE="false"
 
 export IQE_PLUGINS="ccx"
 export IQE_MARKER_EXPRESSION="smoke" # ccx_data_pipeline_smoke does not exits (at least yet) as marker in the plugin
