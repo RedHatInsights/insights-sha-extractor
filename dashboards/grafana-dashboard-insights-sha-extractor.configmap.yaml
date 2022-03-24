@@ -55,6 +55,701 @@ data:
           "bars": false,
           "dashLength": 10,
           "dashes": false,
+          "datasource": {
+            "type": "prometheus",
+            "uid": "${datasource}"
+          },
+          "fieldConfig": {
+            "defaults": {
+              "links": []
+            },
+            "overrides": []
+          },
+          "fill": 1,
+          "fillGradient": 0,
+          "gridPos": {
+            "h": 8,
+            "w": 23,
+            "x": 0,
+            "y": 0
+          },
+          "hiddenSeries": false,
+          "id": 29,
+          "legend": {
+            "avg": false,
+            "current": false,
+            "max": false,
+            "min": false,
+            "show": true,
+            "total": false,
+            "values": false
+          },
+          "lines": true,
+          "linewidth": 1,
+          "links": [],
+          "nullPointMode": "null",
+          "options": {
+            "alertThreshold": true
+          },
+          "percentage": false,
+          "pluginVersion": "8.4.1",
+          "pointradius": 5,
+          "points": false,
+          "renderer": "flot",
+          "seriesOverrides": [],
+          "spaceLength": 10,
+          "stack": false,
+          "steppedLine": false,
+          "targets": [
+            {
+              "datasource": {
+                "type": "prometheus",
+                "uid": "${datasource}"
+              },
+              "exemplar": true,
+              "expr": "sum(increase(ccx_consumer_received_total{namespace=\"$namespace\", service=\"ccx-sha-extractor-prometheus-exporter\"}[1m]))",
+              "interval": "",
+              "legendFormat": "received",
+              "refId": "ccx_consumer_received_total"
+            },
+            {
+              "datasource": {
+                "type": "prometheus",
+                "uid": "${datasource}"
+              },
+              "exemplar": true,
+              "expr": "sum(increase(ccx_downloaded_total{namespace=\"$namespace\", service=\"ccx-sha-extractor-prometheus-exporter\"}[1m]))",
+              "hide": false,
+              "interval": "",
+              "legendFormat": "downloaded",
+              "refId": "ccx_downloaded_total"
+            },
+            {
+              "datasource": {
+                "type": "prometheus",
+                "uid": "${datasource}"
+              },
+              "exemplar": true,
+              "expr": "sum(increase(ccx_engine_processed_total{namespace=\"$namespace\", service=\"ccx-sha-extractor-prometheus-exporter\"}[1m]))",
+              "hide": false,
+              "interval": "",
+              "legendFormat": "processed",
+              "refId": "ccx_engine_processed_total"
+            },
+            {
+              "datasource": {
+                "type": "prometheus",
+                "uid": "${datasource}"
+              },
+              "exemplar": true,
+              "expr": "sum(increase(ccx_published_total{namespace=\"$namespace\", service=\"ccx-sha-extractor-prometheus-exporter\"}[1m]))",
+              "hide": false,
+              "interval": "",
+              "legendFormat": "published",
+              "refId": "ccx_published_total"
+            },
+            {
+              "datasource": {
+                "type": "prometheus",
+                "uid": "${datasource}"
+              },
+              "exemplar": true,
+              "expr": "sum(increase(ccx_failures_total{namespace=\"$namespace\", service=\"ccx-sha-extractor-prometheus-exporter\"}[1m]))",
+              "hide": false,
+              "interval": "",
+              "legendFormat": "failures",
+              "refId": "ccx_failures_total"
+            },
+            {
+              "datasource": {
+                "type": "prometheus",
+                "uid": "${datasource}"
+              },
+              "exemplar": true,
+              "expr": "sum(increase(ccx_not_handled_total{namespace=\"$namespace\", service=\"ccx-sha-extractor-prometheus-exporter\"}[1m]))",
+              "hide": false,
+              "interval": "",
+              "legendFormat": "not handled",
+              "refId": "ccx_not_handled_total"
+            },
+            {
+              "datasource": {
+                "type": "prometheus",
+                "uid": "${datasource}"
+              },
+              "exemplar": true,
+              "expr": "sum(increase(ccx_engine_processed_timeout_total{namespace=\"$namespace\", service=\"ccx-sha-extractor-prometheus-exporter\"}[1m]))",
+              "hide": false,
+              "interval": "",
+              "legendFormat": "engine timeouts",
+              "refId": "ccx_engine_processed_timeout_total"
+            }
+          ],
+          "thresholds": [],
+          "timeRegions": [],
+          "title": "Stats Watcher (Counters)",
+          "tooltip": {
+            "shared": true,
+            "sort": 0,
+            "value_type": "individual"
+          },
+          "type": "graph",
+          "xaxis": {
+            "mode": "time",
+            "show": true,
+            "values": []
+          },
+          "yaxes": [
+            {
+              "format": "short",
+              "logBase": 1,
+              "show": true
+            },
+            {
+              "format": "short",
+              "logBase": 1,
+              "show": true
+            }
+          ],
+          "yaxis": {
+            "align": false
+          }
+        },
+        {
+          "aliasColors": {},
+          "bars": true,
+          "dashLength": 10,
+          "dashes": false,
+          "datasource": {
+            "type": "prometheus",
+            "uid": "$datasource"
+          },
+          "fieldConfig": {
+            "defaults": {
+              "links": []
+            },
+            "overrides": []
+          },
+          "fill": 1,
+          "fillGradient": 0,
+          "gridPos": {
+            "h": 9,
+            "w": 12,
+            "x": 0,
+            "y": 31
+          },
+          "hiddenSeries": false,
+          "id": 5,
+          "legend": {
+            "avg": false,
+            "current": false,
+            "max": false,
+            "min": false,
+            "show": false,
+            "total": false,
+            "values": false
+          },
+          "lines": false,
+          "linewidth": 1,
+          "links": [],
+          "nullPointMode": "null",
+          "options": {
+            "alertThreshold": true
+          },
+          "percentage": false,
+          "pluginVersion": "8.4.1",
+          "pointradius": 5,
+          "points": false,
+          "renderer": "flot",
+          "seriesOverrides": [],
+          "spaceLength": 10,
+          "stack": false,
+          "steppedLine": false,
+          "targets": [
+            {
+              "datasource": {
+                "type": "prometheus",
+                "uid": "$datasource"
+              },
+              "exemplar": true,
+              "expr": "sum by (le) (ccx_process_duration_seconds_bucket{namespace=\"$namespace\", service=\"ccx-sha-extractor-prometheus-exporter\", le=\"0.1\"})",
+              "format": "time_series",
+              "interval": "",
+              "intervalFactor": 1,
+              "legendFormat": "( -Inf; 0.1 >",
+              "refId": "A"
+            },
+            {
+              "datasource": {
+                "type": "prometheus",
+                "uid": "$datasource"
+              },
+              "exemplar": true,
+              "expr": "sum by (le) (ccx_process_duration_seconds_bucket{namespace=\"$namespace\", service=\"ccx-sha-extractor-prometheus-exporter\", le=\"0.25\"}) - ignoring(le) sum by (le) (ccx_process_duration_seconds_bucket{namespace=\"$namespace\", service=\"ccx-sha-extractor-prometheus-exporter\", le=\"0.1\"})",
+              "format": "time_series",
+              "interval": "",
+              "intervalFactor": 1,
+              "legendFormat": "( 0.1; 0.25 >",
+              "refId": "B"
+            },
+            {
+              "datasource": {
+                "type": "prometheus",
+                "uid": "$datasource"
+              },
+              "exemplar": true,
+              "expr": "sum by (le) (ccx_process_duration_seconds_bucket{namespace=\"$namespace\", service=\"ccx-sha-extractor-prometheus-exporter\", le=\"0.5\"}) - ignoring(le) sum by (le) (ccx_process_duration_seconds_bucket{namespace=\"$namespace\", service=\"ccx-sha-extractor-prometheus-exporter\", le=\"0.25\"})",
+              "format": "time_series",
+              "interval": "",
+              "intervalFactor": 1,
+              "legendFormat": "( 0.25; 0.5 >",
+              "refId": "C"
+            },
+            {
+              "datasource": {
+                "type": "prometheus",
+                "uid": "$datasource"
+              },
+              "exemplar": true,
+              "expr": "sum by (le) (ccx_process_duration_seconds_bucket{namespace=\"$namespace\", service=\"ccx-sha-extractor-prometheus-exporter\", le=\"0.75\"}) - ignoring(le) sum by (le) (ccx_process_duration_seconds_bucket{namespace=\"$namespace\", service=\"ccx-sha-extractor-prometheus-exporter\", le=\"0.5\"})",
+              "format": "time_series",
+              "interval": "",
+              "intervalFactor": 1,
+              "legendFormat": "( 0.5; 0.75 >",
+              "refId": "D"
+            },
+            {
+              "datasource": {
+                "type": "prometheus",
+                "uid": "$datasource"
+              },
+              "exemplar": true,
+              "expr": "sum by (le) (ccx_process_duration_seconds_bucket{namespace=\"$namespace\", service=\"ccx-sha-extractor-prometheus-exporter\", le=\"1.0\"}) - ignoring(le) sum by (le) (ccx_process_duration_seconds_bucket{namespace=\"$namespace\", service=\"ccx-sha-extractor-prometheus-exporter\", le=\"0.75\"})",
+              "format": "time_series",
+              "interval": "",
+              "intervalFactor": 1,
+              "legendFormat": "( 0.75; 1.0 >",
+              "refId": "E"
+            },
+            {
+              "datasource": {
+                "type": "prometheus",
+                "uid": "$datasource"
+              },
+              "exemplar": true,
+              "expr": "sum by (le) (ccx_process_duration_seconds_bucket{namespace=\"$namespace\", service=\"ccx-sha-extractor-prometheus-exporter\", le=\"10.0\"}) - ignoring(le) sum by (le) (ccx_process_duration_seconds_bucket{namespace=\"$namespace\", service=\"ccx-sha-extractor-prometheus-exporter\", le=\"1.0\"})",
+              "format": "time_series",
+              "interval": "",
+              "intervalFactor": 1,
+              "legendFormat": "( 1.0; 10.0 >",
+              "refId": "F"
+            },
+            {
+              "datasource": {
+                "type": "prometheus",
+                "uid": "$datasource"
+              },
+              "exemplar": true,
+              "expr": "sum by (le) (ccx_process_duration_seconds_bucket{namespace=\"$namespace\", service=\"ccx-sha-extractor-prometheus-exporter\", le=\"+Inf\"}) - ignoring(le) sum by (le) (ccx_process_duration_seconds_bucket{namespace=\"$namespace\", service=\"ccx-sha-extractor-prometheus-exporter\", le=\"10.0\"})",
+              "format": "time_series",
+              "interval": "",
+              "intervalFactor": 1,
+              "legendFormat": "( 10.0; +Inf )",
+              "refId": "G"
+            }
+          ],
+          "thresholds": [],
+          "timeRegions": [],
+          "title": "Stats Watcher: Seconds to Process a Single Archive",
+          "tooltip": {
+            "shared": true,
+            "sort": 0,
+            "value_type": "individual"
+          },
+          "type": "graph",
+          "xaxis": {
+            "mode": "series",
+            "show": true,
+            "values": [
+              "current"
+            ]
+          },
+          "yaxes": [
+            {
+              "format": "short",
+              "label": "Number of Occurrences",
+              "logBase": 1,
+              "show": true
+            },
+            {
+              "format": "short",
+              "logBase": 1,
+              "show": true
+            }
+          ],
+          "yaxis": {
+            "align": false
+          }
+        },
+        {
+          "aliasColors": {},
+          "bars": true,
+          "dashLength": 10,
+          "dashes": false,
+          "datasource": {
+            "type": "prometheus",
+            "uid": "$datasource"
+          },
+          "fieldConfig": {
+            "defaults": {
+              "links": []
+            },
+            "overrides": []
+          },
+          "fill": 1,
+          "fillGradient": 0,
+          "gridPos": {
+            "h": 9,
+            "w": 12,
+            "x": 12,
+            "y": 31
+          },
+          "hiddenSeries": false,
+          "id": 4,
+          "legend": {
+            "avg": false,
+            "current": false,
+            "max": false,
+            "min": false,
+            "show": false,
+            "total": false,
+            "values": false
+          },
+          "lines": false,
+          "linewidth": 1,
+          "links": [],
+          "nullPointMode": "null",
+          "options": {
+            "alertThreshold": true
+          },
+          "percentage": false,
+          "pluginVersion": "8.4.1",
+          "pointradius": 5,
+          "points": false,
+          "renderer": "flot",
+          "seriesOverrides": [],
+          "spaceLength": 10,
+          "stack": false,
+          "steppedLine": false,
+          "targets": [
+            {
+              "datasource": {
+                "type": "prometheus",
+                "uid": "$datasource"
+              },
+              "exemplar": true,
+              "expr": "sum by (le) (ccx_download_duration_seconds_bucket{namespace=\"$namespace\", service=\"ccx-sha-extractor-prometheus-exporter\", le=\"0.1\"})",
+              "format": "time_series",
+              "interval": "",
+              "intervalFactor": 1,
+              "legendFormat": "( -Inf; 0.1 >",
+              "refId": "A"
+            },
+            {
+              "datasource": {
+                "type": "prometheus",
+                "uid": "$datasource"
+              },
+              "exemplar": true,
+              "expr": "sum by (le) (ccx_download_duration_seconds_bucket{namespace=\"$namespace\", service=\"ccx-sha-extractor-prometheus-exporter\",le=\"0.25\"}) - ignoring(le) sum by (le) (ccx_download_duration_seconds_bucket{namespace=\"$namespace\", service=\"ccx-sha-extractor-prometheus-exporter\", le=\"0.1\"})",
+              "format": "time_series",
+              "interval": "",
+              "intervalFactor": 1,
+              "legendFormat": "( 0.1; 0.25 >",
+              "refId": "B"
+            },
+            {
+              "datasource": {
+                "type": "prometheus",
+                "uid": "$datasource"
+              },
+              "exemplar": true,
+              "expr": "sum by (le) (ccx_download_duration_seconds_bucket{namespace=\"$namespace\", service=\"ccx-sha-extractor-prometheus-exporter\", le=\"0.5\"}) - ignoring(le) sum by (le) (ccx_download_duration_seconds_bucket{namespace=\"$namespace\", service=\"ccx-sha-extractor-prometheus-exporter\", le=\"0.25\"})",
+              "format": "time_series",
+              "instant": false,
+              "interval": "",
+              "intervalFactor": 1,
+              "legendFormat": "( 0.25; 0.5 >",
+              "refId": "C"
+            },
+            {
+              "datasource": {
+                "type": "prometheus",
+                "uid": "$datasource"
+              },
+              "exemplar": true,
+              "expr": "sum by (le) (ccx_download_duration_seconds_bucket{namespace=\"$namespace\", service=\"ccx-sha-extractor-prometheus-exporter\", le=\"0.75\"}) - ignoring(le) sum by (le) (ccx_download_duration_seconds_bucket{namespace=\"$namespace\",service=\"ccx-sha-extractor-prometheus-exporter\",  le=\"0.5\"})",
+              "format": "time_series",
+              "interval": "",
+              "intervalFactor": 1,
+              "legendFormat": "( 0.5; 0.75 >",
+              "refId": "D"
+            },
+            {
+              "datasource": {
+                "type": "prometheus",
+                "uid": "$datasource"
+              },
+              "exemplar": true,
+              "expr": "sum by (le) (ccx_download_duration_seconds_bucket{namespace=\"$namespace\", service=\"ccx-sha-extractor-prometheus-exporter\", le=\"1.0\"}) - ignoring(le) sum by (le) (ccx_download_duration_seconds_bucket{namespace=\"$namespace\", service=\"ccx-sha-extractor-prometheus-exporter\",le=\"0.75\"})",
+              "format": "time_series",
+              "interval": "",
+              "intervalFactor": 1,
+              "legendFormat": "( 0.75; 1.0 >",
+              "refId": "E"
+            },
+            {
+              "datasource": {
+                "type": "prometheus",
+                "uid": "$datasource"
+              },
+              "exemplar": true,
+              "expr": "sum by (le) (ccx_download_duration_seconds_bucket{namespace=\"$namespace\", service=\"ccx-sha-extractor-prometheus-exporter\", le=\"10.0\"}) - ignoring(le) sum by (le) (ccx_download_duration_seconds_bucket{namespace=\"$namespace\", service=\"ccx-sha-extractor-prometheus-exporter\",le=\"1.0\"})",
+              "format": "time_series",
+              "interval": "",
+              "intervalFactor": 1,
+              "legendFormat": "( 1.0; 10.0 >",
+              "refId": "F"
+            },
+            {
+              "datasource": {
+                "type": "prometheus",
+                "uid": "$datasource"
+              },
+              "exemplar": true,
+              "expr": "sum by (le) (ccx_download_duration_seconds_bucket{namespace=\"$namespace\", service=\"ccx-sha-extractor-prometheus-exporter\", le=\"+Inf\"}) - ignoring(le) sum by (le) (ccx_download_duration_seconds_bucket{namespace=\"$namespace\", service=\"ccx-sha-extractor-prometheus-exporter\", le=\"10.0\"})",
+              "format": "time_series",
+              "interval": "",
+              "intervalFactor": 1,
+              "legendFormat": "( 10.0; +Inf )",
+              "refId": "G"
+            }
+          ],
+          "thresholds": [],
+          "timeRegions": [],
+          "title": "Stats Watcher: Seconds to Download a Single Archive",
+          "tooltip": {
+            "shared": true,
+            "sort": 0,
+            "value_type": "individual"
+          },
+          "type": "graph",
+          "xaxis": {
+            "mode": "series",
+            "show": true,
+            "values": [
+              "current"
+            ]
+          },
+          "yaxes": [
+            {
+              "format": "short",
+              "label": "Number of Occurrences",
+              "logBase": 1,
+              "show": true
+            },
+            {
+              "format": "short",
+              "logBase": 1,
+              "show": true
+            }
+          ],
+          "yaxis": {
+            "align": false
+          }
+        },
+        {
+          "aliasColors": {},
+          "bars": true,
+          "dashLength": 10,
+          "dashes": false,
+          "datasource": {
+            "type": "prometheus",
+            "uid": "$datasource"
+          },
+          "fieldConfig": {
+            "defaults": {
+              "links": []
+            },
+            "overrides": []
+          },
+          "fill": 1,
+          "fillGradient": 0,
+          "gridPos": {
+            "h": 9,
+            "w": 12,
+            "x": 0,
+            "y": 40
+          },
+          "hiddenSeries": false,
+          "id": 6,
+          "legend": {
+            "avg": false,
+            "current": false,
+            "max": false,
+            "min": false,
+            "show": false,
+            "total": false,
+            "values": false
+          },
+          "lines": false,
+          "linewidth": 1,
+          "links": [],
+          "nullPointMode": "null",
+          "options": {
+            "alertThreshold": true
+          },
+          "percentage": false,
+          "pluginVersion": "8.4.1",
+          "pointradius": 5,
+          "points": false,
+          "renderer": "flot",
+          "seriesOverrides": [],
+          "spaceLength": 10,
+          "stack": false,
+          "steppedLine": false,
+          "targets": [
+            {
+              "datasource": {
+                "type": "prometheus",
+                "uid": "$datasource"
+              },
+              "exemplar": true,
+              "expr": "sum by (le) (ccx_publish_duration_seconds_bucket{namespace=\"$namespace\", service=\"ccx-sha-extractor-prometheus-exporter\", le=\"0.005\"})",
+              "format": "time_series",
+              "interval": "",
+              "intervalFactor": 1,
+              "legendFormat": "( -Inf; 0.005 >",
+              "refId": "A"
+            },
+            {
+              "datasource": {
+                "type": "prometheus",
+                "uid": "$datasource"
+              },
+              "exemplar": true,
+              "expr": "sum by (le) (ccx_publish_duration_seconds_bucket{namespace=\"$namespace\", service=\"ccx-sha-extractor-prometheus-exporter\", le=\"0.01\"}) - ignoring(le) sum by (le) (ccx_publish_duration_seconds_bucket{namespace=\"$namespace\", service=\"ccx-sha-extractor-prometheus-exporter\", le=\"0.005\"})",
+              "format": "time_series",
+              "interval": "",
+              "intervalFactor": 1,
+              "legendFormat": "( 0.005; 0.01 >",
+              "refId": "B"
+            },
+            {
+              "datasource": {
+                "type": "prometheus",
+                "uid": "$datasource"
+              },
+              "exemplar": true,
+              "expr": "sum by (le) (ccx_publish_duration_seconds_bucket{namespace=\"$namespace\", service=\"ccx-sha-extractor-prometheus-exporter\",  le=\"0.025\"}) - ignoring(le) sum by (le) (ccx_publish_duration_seconds_bucket{namespace=\"$namespace\", service=\"ccx-sha-extractor-prometheus-exporter\", le=\"0.01\"})",
+              "format": "time_series",
+              "instant": false,
+              "interval": "",
+              "intervalFactor": 1,
+              "legendFormat": "( 0.01; 0.025 >",
+              "refId": "C"
+            },
+            {
+              "datasource": {
+                "type": "prometheus",
+                "uid": "$datasource"
+              },
+              "exemplar": true,
+              "expr": "sum by (le) (ccx_publish_duration_seconds_bucket{namespace=\"$namespace\", service=\"ccx-sha-extractor-prometheus-exporter\", le=\"0.1\"}) - ignoring(le) sum by (le) (ccx_publish_duration_seconds_bucket{namespace=\"$namespace\", service=\"ccx-sha-extractor-prometheus-exporter\",  le=\"0.025\"})",
+              "format": "time_series",
+              "interval": "",
+              "intervalFactor": 1,
+              "legendFormat": "( 0.025; 0.1 >",
+              "refId": "D"
+            },
+            {
+              "datasource": {
+                "type": "prometheus",
+                "uid": "$datasource"
+              },
+              "exemplar": true,
+              "expr": "sum by (le) (ccx_publish_duration_seconds_bucket{namespace=\"$namespace\", service=\"ccx-sha-extractor-prometheus-exporter\", le=\"0.5\"}) - ignoring(le) sum by (le) (ccx_publish_duration_seconds_bucket{namespace=\"$namespace\", service=\"ccx-sha-extractor-prometheus-exporter\", le=\"0.1\"})",
+              "format": "time_series",
+              "interval": "",
+              "intervalFactor": 1,
+              "legendFormat": "( 0.1; 0.5 >",
+              "refId": "E"
+            },
+            {
+              "datasource": {
+                "type": "prometheus",
+                "uid": "$datasource"
+              },
+              "exemplar": true,
+              "expr": "sum by (le) (ccx_publish_duration_seconds_bucket{namespace=\"$namespace\", service=\"ccx-sha-extractor-prometheus-exporter\", le=\"10.0\"}) - ignoring(le) sum by (le) (ccx_publish_duration_seconds_bucket{namespace=\"$namespace\", service=\"ccx-sha-extractor-prometheus-exporter\", le=\"0.5\"})",
+              "format": "time_series",
+              "interval": "",
+              "intervalFactor": 1,
+              "legendFormat": "( 0.5; 10.0 >",
+              "refId": "F"
+            },
+            {
+              "datasource": {
+                "type": "prometheus",
+                "uid": "$datasource"
+              },
+              "exemplar": true,
+              "expr": "sum by (le) (ccx_publish_duration_seconds_bucket{namespace=\"$namespace\", service=\"ccx-sha-extractor-prometheus-exporter\", le=\"+Inf\"}) - ignoring(le) sum by (le) (ccx_publish_duration_seconds_bucket{namespace=\"$namespace\", service=\"ccx-sha-extractor-prometheus-exporter\", le=\"10.0\"})",
+              "format": "time_series",
+              "interval": "",
+              "intervalFactor": 1,
+              "legendFormat": "( 10.0; +Inf )",
+              "refId": "G"
+            }
+          ],
+          "thresholds": [],
+          "timeRegions": [],
+          "title": "Stats Watcher: Seconds to Publish a Single Archive",
+          "tooltip": {
+            "shared": true,
+            "sort": 0,
+            "value_type": "individual"
+          },
+          "type": "graph",
+          "xaxis": {
+            "mode": "series",
+            "show": true,
+            "values": [
+              "current"
+            ]
+          },
+          "yaxes": [
+            {
+              "format": "short",
+              "label": "Number of Occurrences",
+              "logBase": 1,
+              "show": true
+            },
+            {
+              "format": "short",
+              "logBase": 1,
+              "show": true
+            }
+          ],
+          "yaxis": {
+            "align": false
+          }
+        },
+        {
+          "aliasColors": {},
+          "bars": false,
+          "dashLength": 10,
+          "dashes": false,
           "datasource": "${datasource}",
           "fieldConfig": {
             "defaults": {
