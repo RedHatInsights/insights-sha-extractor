@@ -18,7 +18,7 @@ objects:
     scaleTargetRef:
       apiVersion: apps/v1
       kind: Deployment
-      name: ccx-sha-extractor
+      name: ccx-sha-extractor-instance
     targetCPUUtilizationPercentage: 50
 
 - apiVersion: cloud.redhat.com/v1alpha1
@@ -30,7 +30,7 @@ objects:
     testing:
       iqePlugin: ccx
     deployments:
-      - name: ccx-sha-extractor
+      - name: instance
         minReplicas: ${{MIN_REPLICAS}}
         webServices:
           public:
