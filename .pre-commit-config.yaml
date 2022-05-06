@@ -1,7 +1,7 @@
 exclude: "dashboards|deploy|docs|.travis.yml"
 repos:
 - repo: https://github.com/psf/black
-  rev: 21.12b0
+  rev: 22.3.0
   hooks:
   - id: black
     args: [--safe, --quiet, --line-length, "100"]
