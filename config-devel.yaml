@@ -37,6 +37,8 @@ service:
     kwargs:
       outgoing_topic: ${CDP_OUTGOING_TOPIC:archive-results}
       bootstrap_servers: ${CDP_PRODUCER_SERVER:kafka:29092}
+  watchers:
+    - name: ccx_messaging.watchers.cluster_id_watcher.ClusterIdWatcher
 
   logging:
     version: 1

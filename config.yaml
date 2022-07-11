@@ -43,6 +43,7 @@ service:
     - name: ccx_messaging.watchers.stats_watcher.StatsWatcher
       kwargs:
         prometheus_port: 8000
+    - name: ccx_messaging.watchers.cluster_id_watcher.ClusterIdWatcher
 
   logging:
     version: 1
