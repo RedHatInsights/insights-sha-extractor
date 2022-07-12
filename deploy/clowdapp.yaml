@@ -168,8 +168,9 @@ objects:
           kwargs:
             outgoing_topic: ${CDP_OUTGOING_TOPIC}
             bootstrap_servers: ${CDP_PUBLISHER_SERVER}
-        
+
         watchers:
+          - name: ccx_messaging.watchers.cluster_id_watcher.ClusterIdWatcher
           - name: ccx_messaging.watchers.payload_tracker_watcher.PayloadTrackerWatcher
             kwargs:
               bootstrap_servers: mq-kafka:29092
