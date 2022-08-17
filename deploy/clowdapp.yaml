@@ -49,6 +49,8 @@ objects:
               value: ${CDP_INCOMING_TOPIC}
             - name: CDP_GROUP_ID
               value: ${CDP_GROUP_ID}
+            - name: CDP_PLATFORM_SERVICE
+              value: ${CDP_PLATFORM_SERVICE}
             - name: CDP_CONSUMER_SERVER
               value: ${CDP_CONSUMER_SERVER}
             - name: CDP_DEAD_LETTER_QUEUE_TOPIC
@@ -141,11 +143,12 @@ objects:
         format: insights.formats._json.JsonFormat
         target_components: []
         consumer:
-          name: ccx_messaging.consumers.consumer.Consumer
+          name: ccx_messaging.consumers.consumer.AnemicConsumer
           kwargs:
             incoming_topic: ${CDP_INCOMING_TOPIC}
             group_id: ${CDP_GROUP_ID}
             bootstrap_servers: ${CDP_CONSUMER_SERVER}
+            platform_service: ${CDP_PLATFORM_SERVICE}
             processing_timeout_s: 0
             max_poll_records: 10
             max_poll_interval_ms: 600000
@@ -254,7 +257,7 @@ parameters:
   name: MAX_REPLICAS
   value: '1'
 - name: CDP_INCOMING_TOPIC
-  value: platform.upload.buckit
+  value: platform.upload.announce
   required: true
 - name: CDP_OUTGOING_TOPIC
   value: ccx.image.sha.results
@@ -268,6 +271,10 @@ parameters:
 - name: CDP_CONSUMER_SERVER
   value: mq-kafka:29092
   required: true
+- description: Service name for filtering received Kafka message from announce topic
+  name: CDP_PLATFORM_SERVICE
+  required: true
+  value: buckit
 - name: CDP_PUBLISHER_SERVER
   value: mq-kafka:29092
   required: true
