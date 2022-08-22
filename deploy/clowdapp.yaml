@@ -274,7 +274,7 @@ parameters:
 - description: Service name for filtering received Kafka message from announce topic
   name: CDP_PLATFORM_SERVICE
   required: true
-  value: buckit
+  value: openshift
 - name: CDP_PUBLISHER_SERVER
   value: mq-kafka:29092
   required: true
