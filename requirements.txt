@@ -1,6 +1,6 @@
 app-common-python==0.1.8
 boto3==1.14.27
-git+https://github.com/RedHatInsights/insights-ccx-messaging@v1.0.2
+git+https://github.com/RedHatInsights/insights-ccx-messaging@v3.0.1
 insights-core>=3.0.235
 git+https://github.com/RedHatInsights/insights-core-messaging@1.2.0
 jsonschema==3.2.0
