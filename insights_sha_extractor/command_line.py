@@ -22,9 +22,9 @@ import os
 from app_common_python import isClowderEnabled
 from insights_messaging.appbuilder import AppBuilder
 import pkg_resources
+from ccx_messaging.utils.clowder import apply_clowder_config
 
 from insights_sha_extractor.logging import setup_watchtower
-from insights_sha_extractor.utils.clowder import apply_clowder_config
 from insights_sha_extractor.utils.sentry import init_sentry
 
 
