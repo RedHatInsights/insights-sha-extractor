@@ -11,11 +11,12 @@ service:
   format: insights.formats._json.JsonFormat
   target_components: []
   consumer:
-    name: ccx_messaging.consumers.consumer.Consumer
+    name: ccx_messaging.consumers.consumer.AnemicConsumer
     kwargs:
-      incoming_topic: ${CDP_INCOMING_TOPIC:platform.upload.buckit}
+      incoming_topic: ${CDP_INCOMING_TOPIC:platform.upload.announce}
       group_id: ${CDP_GROUP_ID:insights_sha_extractor_app}
       bootstrap_servers: ${CDP_CONSUMER_SERVER:["10.34.129.172:9092"]}
+      platform_service: openshift
       processing_timeout_s: 0
       max_poll_records: 10
       max_poll_interval_ms: 600000
