@@ -45,18 +45,12 @@ objects:
               value: /data/config.yaml
             - name: CLOWDER_ENABLED
               value: ${CLOWDER_ENABLED}
-            - name: CDP_INCOMING_TOPIC
-              value: ${CDP_INCOMING_TOPIC}
             - name: CDP_GROUP_ID
               value: ${CDP_GROUP_ID}
             - name: CDP_PLATFORM_SERVICE
               value: ${CDP_PLATFORM_SERVICE}
             - name: CDP_CONSUMER_SERVER
               value: ${CDP_CONSUMER_SERVER}
-            - name: CDP_DEAD_LETTER_QUEUE_TOPIC
-              value: ${CDP_DEAD_LETTER_QUEUE_TOPIC}
-            - name: CDP_OUTGOING_TOPIC
-              value: ${CDP_OUTGOING_TOPIC}
             - name: CDP_PUBLISHER_SERVER
               value: ${CDP_PUBLISHER_SERVER}
             - name: SENTRY_DSN
@@ -121,6 +115,9 @@ objects:
       - replicas: 3
         partitions: 2
         topicName: ${CDP_OUTGOING_TOPIC}
+      - replicas: 3
+        partitions: 1
+        topicName: ${PAYLOAD_TRACKER_TOPIC}
 
 - kind: ConfigMap
   apiVersion: v1
@@ -177,7 +174,7 @@ objects:
           - name: ccx_messaging.watchers.payload_tracker_watcher.PayloadTrackerWatcher
             kwargs:
               bootstrap_servers: mq-kafka:29092
-              topic: platform.payload-status
+              topic: ${PAYLOAD_TRACKER_TOPIC}
           - name: ccx_messaging.watchers.stats_watcher.StatsWatcher
             kwargs:
               prometheus_port: 8000
@@ -264,6 +261,9 @@ parameters:
   required: true
 - name: CDP_DEAD_LETTER_QUEUE_TOPIC
   value: ccx.sha.extractor.dead.letter.queue
+  required: true
+- name: PAYLOAD_TRACKER_TOPIC
+  value: platform.payload-status
   required: true
 - name: CDP_GROUP_ID
   value: ccx_sha_extractor_app
