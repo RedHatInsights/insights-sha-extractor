@@ -8,7 +8,7 @@ stages:
   - lint
   - test
   - covcheck
-
+  - deploy
 
 linting:
   extends: .pre-commit:lint
