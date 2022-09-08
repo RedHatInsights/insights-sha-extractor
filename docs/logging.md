@@ -1,8 +1,3 @@
----
-layout: page
-nav_order: 4
----
-
 # Logging
 
 The log format is highly configurable through the configuration file. By
@@ -10,7 +5,7 @@ default, using the [provided
 configuration](https://github.com/RedHatInsights/insights-sha-extractor/blob/master/config.yaml),
 each log message will produce a JSON dictionary with the following structure:
 
-```json5
+```json
 {
   "levelname": "LOG_LEVEL",
   "asctime": "timestamp",

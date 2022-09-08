@@ -1,7 +1,3 @@
----
-layout: page
-nav_order: 5
----
 # Local setup
 
 There is a [docker-compose](https://gitlab.cee.redhat.com/insights-qe/iqe-ccx-plugin/blob/master/docker-compose.yml) configuration that provisions a minimal stack of
