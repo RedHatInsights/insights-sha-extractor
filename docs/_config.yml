@@ -1,21 +1,28 @@
-title: Insights SHA extractor
-description: SHA extraction service
-baseurl: "/"
-url: "https://supreme-garbanzo-c43cccab.pages.github.io"
+# Book settings
+# Learn more at https://jupyterbook.org/customize/config.html
 
-heading_anchors: true
-search_enabled: false
+title: My sample book
+author: The Jupyter Book Community
+logo: logo.png
 
-footer_content: "Copyright &copy; 2022 Red Hat, Inc.</a>"
+# Force re-execution of notebooks on each build.
+# See https://jupyterbook.org/content/execute.html
+execute:
+  execute_notebooks: force
 
-# Build settings
-markdown: kramdown
-remote_theme: pmarsceill/just-the-docs
-plugins:
-  - jekyll-remote-theme
+# Define the name of the latex output file for PDF builds
+latex:
+  latex_documents:
+    targetname: book.tex
 
-exclude:
-  - Gemfile
-  - Gemfile.lock
-  - vendor/
+# Information about where the book exists on the web
+repository:
+  url: https://gitlab.cee.redhat.com/ccx/ccx-sha-extractor
+  path_to_book: docs  # Optional path to your book, relative to the repository root
+  branch: master  # Which branch of the repository should be used when creating links (optional)
 
+# Add GitHub buttons to your book
+# See https://jupyterbook.org/customize/config.html#add-a-link-to-your-repository
+html:
+  use_issues_button: false
+  use_repository_button: true

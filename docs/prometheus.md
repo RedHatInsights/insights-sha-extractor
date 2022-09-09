@@ -1,8 +1,3 @@
----
-layout: page
-nav_order: 3
----
-
 # Prometheus API
 
 The project allows to expose some metrics to **Prometheus** if desired. To

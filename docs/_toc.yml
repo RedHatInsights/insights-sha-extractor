@@ -1,0 +1,14 @@
+# Table of contents
+# Learn more at https://jupyterbook.org/customize/toc.html
+
+format: jb-book
+root: index
+chapters:
+- file: architecture
+- file: implementation
+- file: prometheus
+- file: logging
+- file: local_setup
+- file: deploy
+- file: references
+

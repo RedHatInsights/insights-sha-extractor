@@ -1,7 +1,3 @@
----
-layout: page
-nav_order: 1
----
 # Architecture
 
 This service is built on top of [insights-core-messaging

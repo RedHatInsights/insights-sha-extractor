@@ -8,7 +8,7 @@ stages:
   - lint
   - test
   - covcheck
-
+  - deploy
 
 linting:
   extends: .pre-commit:lint
@@ -44,3 +44,17 @@ coverage-checking:
   allow_failure: true
   tags:
     - shared
+
+pages:
+  stage: deploy
+  environment: production
+  image: python:3.10
+  script:
+  - pip install -r docs/requirements.txt
+  - jb build docs --path-output _build
+  - mv _build/_build/html public
+  artifacts:
+    paths:
+    - public
+  rules:
+  - if: $CI_COMMIT_REF_NAME == $CI_DEFAULT_BRANCH

@@ -1,7 +1,3 @@
----
-layout: page
-nav_order: 2
----
 # Implementation
 
 ## Data consumer
@@ -13,16 +9,15 @@ corresponding S3 bucket.
 
 ### Format of the received Kafka records
 
----
-**NOTE**
+```{note}
 
 Detailed information about the exact format of received Kafka records is
 available at
 https://redhatinsights.github.io/insights-data-schemas/platform_upload_buckit_messages.html
+```
 
----
 
-```json5
+```json
 {
   "account": 123456, // (uint)
   "principal": 9, // (uint)
@@ -36,7 +31,7 @@ https://redhatinsights.github.io/insights-data-schemas/platform_upload_buckit_me
 The attribute `b64_identity` contains another JSON encoded by BASE64 encoding.
 User and org identities are stored here:
 
-```json5
+```json
     "identity": {
         "account_number": "6212377",
         "auth_type": "basic-auth",
