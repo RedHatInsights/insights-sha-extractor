@@ -18,7 +18,6 @@ export IQE_TEST_IMPORTANCE=""
 export IQE_CJI_TIMEOUT="30m"
 
 function build_image() {
-    export IMAGE_TAG="qa"
     source $CICD_ROOT/build.sh
 }
 
