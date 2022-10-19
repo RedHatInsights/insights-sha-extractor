@@ -90,6 +90,24 @@ objects:
                   key: aws_secret_access_key
                   optional: true
           image: ${IMAGE}:${IMAGE_TAG}
+          readinessProbe:
+            httpGet:
+              path: /metrics
+              port: 8000
+            periodSeconds: 10
+          livenessProbe:
+            httpGet:
+              path: /metrics
+              port: 8000
+            failureThreshold: 1
+            periodSeconds: 10
+          startupProbe:
+            httpGet:
+              path: /metrics
+              port: 8000
+            # Wait for 10x10 seconds
+            failureThreshold: 10
+            periodSeconds: 10
           volumeMounts:
             - mountPath: /data
               name: ccx-sha-extractor-config
