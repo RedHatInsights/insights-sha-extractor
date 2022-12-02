@@ -15,7 +15,7 @@ service:
     kwargs:
       incoming_topic: ${CDP_INCOMING_TOPIC:platform.upload.announce}
       group_id: ${CDP_GROUP_ID:insights_sha_extractor_app}
-      bootstrap_servers: ${CDP_CONSUMER_SERVER:["10.34.129.172:9092"]}
+      bootstrap_servers: ${CDP_CONSUMER_SERVER:[10.34.129.172:9092]}
       platform_service: openshift
       processing_timeout_s: 0
       max_poll_records: 10
@@ -35,7 +35,7 @@ service:
     name: ccx_messaging.publishers.sha_publisher.SHAPublisher
     kwargs:
       outgoing_topic: ${CDP_OUTGOING_TOPIC:archive-results}
-      bootstrap_servers: ${CDP_PUBLISHER_SERVER:["10.34.129.172:9092"]}
+      bootstrap_servers: ${CDP_PUBLISHER_SERVER:[10.34.129.172:9092]}
   watchers:
     - name: ccx_messaging.watchers.payload_tracker_watcher.PayloadTrackerWatcher
       kwargs:
