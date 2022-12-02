@@ -15,6 +15,8 @@
 """Module containing unit tests for the `Consumer` class."""
 import sys
 import pytest
+import logging
+import kafka
 
 
 import insights_sha_extractor.command_line as command_line
@@ -34,6 +36,31 @@ def test_command_line_args_valid_config_value():
     parser = command_line.parse_args()
     assert not parser.version
     assert parser.config
+
+
+def test_command_line_print_version(caplog):
+    """Verify the version is printed."""
+    with caplog.at_level(logging.INFO):
+        command_line.print_version()
+    assert "insights-sha-extractor version" in caplog.text
+
+
+def test_command_line_apply_config_no_file(caplog):
+    """Verify the apply_config fails if the file doesn't exist."""
+    try:
+        command_line.apply_config("test.yaml")
+        assert False
+    except FileNotFoundError:
+        assert True
+
+
+def test_command_line_apply_config_valid_file(caplog):
+    """Verify the configuration is applied if a valid file is given."""
+    try:
+        command_line.apply_config("config.yaml")
+        assert False
+    except kafka.errors.NoBrokersAvailable:
+        assert True
 
 
 def test_command_line_args_no_config_provided():
