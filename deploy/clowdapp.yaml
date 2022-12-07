@@ -191,6 +191,7 @@ objects:
           - name: ccx_messaging.watchers.cluster_id_watcher.ClusterIdWatcher
           - name: ccx_messaging.watchers.payload_tracker_watcher.PayloadTrackerWatcher
             kwargs:
+              service_name: ccx-sha-extractor
               bootstrap_servers: mq-kafka:29092
               topic: ${PAYLOAD_TRACKER_TOPIC}
           - name: ccx_messaging.watchers.stats_watcher.StatsWatcher
