@@ -58,12 +58,6 @@ service:
         formatter: json
         filters:
           - context_filter
-      logstash:
-        level: INFO
-        class: logstash.TCPLogstashHandler
-        host: "127.0.0.1"
-        port: 5000
-        version: 1
     formatters:
       brief:
         format: "%(message)s"
@@ -78,7 +72,6 @@ service:
     root:
       handlers:
         - default
-        - logstash
     loggers:
       insights_messaging:
         level: DEBUG

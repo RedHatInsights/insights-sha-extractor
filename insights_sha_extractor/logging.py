@@ -51,11 +51,12 @@ def setup_watchtower(logging_config=None):
         aws_secret_access_key=os.environ["CW_AWS_SECRET_ACCESS_KEY"],
         region_name=os.environ["AWS_REGION_NAME"],
     )
+    client = session.client("logs")
 
     root_logger = logging.getLogger()
 
     handler = CloudWatchLogHandler(
-        boto3_session=session,
+        boto3_client=client,
         log_group=os.environ["CW_LOG_GROUP"],
         stream_name=os.environ["CW_STREAM_NAME"],
         create_log_group=False,
