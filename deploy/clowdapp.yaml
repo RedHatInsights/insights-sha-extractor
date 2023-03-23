@@ -158,18 +158,17 @@ objects:
         format: insights.formats._json.JsonFormat
         target_components: []
         consumer:
-          name: ccx_messaging.consumers.consumer.AnemicConsumer
+          name: ccx_messaging.consumers.kafka_consumer.KafkaConsumer
           kwargs:
             incoming_topic: ${CDP_INCOMING_TOPIC}
-            group_id: ${CDP_GROUP_ID}
-            bootstrap_servers: ${CDP_CONSUMER_SERVER}
             platform_service: ${CDP_PLATFORM_SERVICE}
             processing_timeout_s: 0
-            max_poll_records: 10
-            max_poll_interval_ms: 600000
-            heartbeat_interval_ms: 10000
-            session_timeout_ms: 20000
             dead_letter_queue_topic: ${CDP_DEAD_LETTER_QUEUE_TOPIC}
+            group.id: ${CDP_GROUP_ID}
+            bootstrap.servers: ${CDP_CONSUMER_SERVER}
+            max.poll.interval.ms: 600000
+            heartbeat.interval.ms: 10000
+            session.timeout.ms: 20000
 
         downloader:
           name: ccx_messaging.downloaders.http_downloader.HTTPDownloader
