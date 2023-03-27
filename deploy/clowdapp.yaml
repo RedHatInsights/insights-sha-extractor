@@ -181,10 +181,10 @@ objects:
             extract_timeout: 10
 
         publisher:
-          name: ccx_messaging.publishers.sha_publisher.SHAPublisher
+          name: ccx_messaging.publishers.workloads_info_publisher.WorkloadInfoPublisher
           kwargs:
             outgoing_topic: ${CDP_OUTGOING_TOPIC}
-            bootstrap_servers: ${CDP_PUBLISHER_SERVER}
+            bootstrap.servers: ${CDP_PUBLISHER_SERVER}
 
         watchers:
           - name: ccx_messaging.watchers.cluster_id_watcher.ClusterIdWatcher
