@@ -81,7 +81,7 @@ def insights_sha_extractor():
         print_version()
         sys.exit(0)
 
-    init_sentry(os.environ.get("SENTRY_DSN", None))
+    init_sentry(os.environ.get("SENTRY_DSN", None), None, os.environ.get("SENTRY_ENVIRONMENT", None))
 
     if args.config:
         apply_config(args.config)
