@@ -14,15 +14,14 @@ service:
     name: ccx_messaging.consumers.consumer.AnemicConsumer
     kwargs:
       incoming_topic: ${CDP_INCOMING_TOPIC:platform.upload.announce}
-      group_id: ${CDP_GROUP_ID:insights_sha_extractor_app}
-      bootstrap_servers: ${CDP_CONSUMER_SERVER:[10.34.129.172:9092]}
       platform_service: openshift
       processing_timeout_s: 0
-      max_poll_records: 10
-      max_poll_interval_ms: 600000
-      heartbeat_interval_ms: 10000
-      session_timeout_ms: 20000
       dead_letter_queue_topic: ${CDP_DEAD_LETTER_QUEUE_TOPIC:dead.letter.queue}
+      group.id: ${CDP_GROUP_ID:insights_sha_extractor_app}
+      bootstrap.servers: ${CDP_CONSUMER_SERVER:[10.34.129.172:9092]}
+      max.poll.interval.ms: 600000
+      heartbeat.interval.ms: 10000
+      session.timeout.ms: 20000
   downloader:
     name: ccx_messaging.downloaders.http_downloader.HTTPDownloader
     kwargs:
@@ -32,10 +31,10 @@ service:
     kwargs:
       extract_timeout: 10
   publisher:
-    name: ccx_messaging.publishers.sha_publisher.SHAPublisher
+    name: ccx_messaging.publishers.workloads_info_publisher.WorkloadInfoPublisher
     kwargs:
       outgoing_topic: ${CDP_OUTGOING_TOPIC:archive-results}
-      bootstrap_servers: ${CDP_PUBLISHER_SERVER:[10.34.129.172:9092]}
+      bootstrap.servers: ${CDP_PUBLISHER_SERVER:[10.34.129.172:9092]}
   watchers:
     - name: ccx_messaging.watchers.payload_tracker_watcher.PayloadTrackerWatcher
       kwargs:
