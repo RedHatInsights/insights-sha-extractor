@@ -11,7 +11,7 @@ service:
   format: insights.formats._json.JsonFormat
   target_components: []
   consumer:
-    name: ccx_messaging.consumers.consumer.AnemicConsumer
+    name: ccx_messaging.consumers.kafka_consumer.KafkaConsumer
     kwargs:
       incoming_topic: ${CDP_INCOMING_TOPIC:platform.upload.announce}
       platform_service: openshift

@@ -16,8 +16,7 @@
 import sys
 import pytest
 import logging
-import kafka
-
+from unittest.mock import MagicMock, patch
 
 import insights_sha_extractor.command_line as command_line
 
@@ -54,13 +53,16 @@ def test_command_line_apply_config_no_file(caplog):
         assert True
 
 
-def test_command_line_apply_config_valid_file(caplog):
+@patch("ccx_messaging.consumers.kafka_consumer.ConfluentConsumer")
+def test_command_line_apply_config_valid_file(consumer_init_mock, caplog):
     """Verify the configuration is applied if a valid file is given."""
-    try:
-        command_line.apply_config("config.yaml")
-        assert False
-    except kafka.errors.NoBrokersAvailable:
-        assert True
+    consumer_mock = MagicMock()
+    consumer_init_mock.return_value = consumer_mock
+
+    consumer_mock.consume.side_effect = [KeyboardInterrupt]
+    command_line.apply_config(
+        "config.yaml"
+    )  # this should finish due to receiving a KeyboardInterrupt
 
 
 def test_command_line_args_no_config_provided():
