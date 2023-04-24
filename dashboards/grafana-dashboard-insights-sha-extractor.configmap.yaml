@@ -96,11 +96,11 @@ data:
                 "uid": "${datasource}"
               },
               "exemplar": true,
-              "expr": "sum(increase(ccx_downloaded_total{namespace=\"$namespace\", service=\"ccx-sha-extractor-prometheus-exporter\"}[1m]))",
+              "expr": "sum(increase(ccx_downloaded_total_count{namespace=\"$namespace\", service=\"ccx-sha-extractor-prometheus-exporter\"}[1m]))",
               "hide": false,
               "interval": "",
               "legendFormat": "downloaded",
-              "refId": "ccx_downloaded_total"
+              "refId": "ccx_downloaded_total_count"
             },
             {
               "datasource": {
