@@ -1,4 +1,4 @@
-FROM registry.access.redhat.com/ubi8/ubi:8.7-1054
+FROM registry.access.redhat.com/ubi9:9.2-489
 
 ENV CONFIG_PATH=/ccx-sha-extractor/config.yaml \
     VENV=/ccx-sha-extractor-venv \
