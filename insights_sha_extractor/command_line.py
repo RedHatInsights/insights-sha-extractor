@@ -24,8 +24,7 @@ from insights_messaging.appbuilder import AppBuilder
 import pkg_resources
 from ccx_messaging.utils.clowder import apply_clowder_config
 from ccx_messaging.utils.logging import setup_watchtower
-
-from insights_sha_extractor.utils.sentry import init_sentry
+from ccx_messaging.utils.sentry import init_sentry
 
 
 def parse_args():
