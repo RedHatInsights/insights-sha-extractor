@@ -189,7 +189,7 @@ objects:
           kwargs:
             outgoing_topic: ${CDP_OUTGOING_TOPIC}
             bootstrap.servers: ${CDP_PUBLISHER_SERVER}
-            compression.type: gzip
+            compression: gzip
 
         watchers:
           - name: ccx_messaging.watchers.cluster_id_watcher.ClusterIdWatcher
