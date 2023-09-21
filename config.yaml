@@ -18,7 +18,8 @@ service:
       processing_timeout_s: 0
       dead_letter_queue_topic: ${CDP_DEAD_LETTER_QUEUE_TOPIC:dead.letter.queue}
       group.id: ${CDP_GROUP_ID:insights_sha_extractor_app}
-      bootstrap.servers: ${CDP_CONSUMER_SERVER:[10.34.129.172:9092]}
+      bootstrap.servers: kafka:29092
+      platform_service: testareno
       max.poll.interval.ms: 600000
       heartbeat.interval.ms: 10000
       session.timeout.ms: 20000
@@ -33,14 +34,14 @@ service:
   publisher:
     name: ccx_messaging.publishers.workloads_info_publisher.WorkloadInfoPublisher
     kwargs:
-      outgoing_topic: ${CDP_OUTGOING_TOPIC:archive-results}
-      bootstrap.servers: ${CDP_PUBLISHER_SERVER:[10.34.129.172:9092]}
+      outgoing_topic: topic1
+      bootstrap.servers: kafka:29092
   watchers:
     - name: ccx_messaging.watchers.payload_tracker_watcher.PayloadTrackerWatcher
       kwargs:
         service_name: ccx-sha-extractor
-        bootstrap.servers: mq-kafka:29092
-        topic: platform.payload-status
+        bootstrap.servers: kafka:29092
+        topic: topic2
     - name: ccx_messaging.watchers.stats_watcher.StatsWatcher
       kwargs:
         prometheus_port: 8000
