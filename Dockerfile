@@ -20,7 +20,7 @@ RUN microdnf install --nodocs -y python3.11 unzip git-core && \
     pip install --no-cache-dir -r requirements.txt && \
     microdnf remove -y git-core && \
     microdnf clean all && \
-    rpm -e --nodeps sqlite-libs krb5-libs libxml2 expat readline pam openssh openssh-clients && \
+    rpm -e --nodeps sqlite-libs krb5-libs libxml2 readline pam openssh openssh-clients && \
     chmod -R g=u $HOME $VENV /etc/passwd && \
     chgrp -R 0 $HOME $VENV
 
