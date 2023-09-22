@@ -7,7 +7,7 @@ CacheControl==0.12.11
 ccx-messaging @ git+https://github.com/RedHatInsights/insights-ccx-messaging@v3.4.2
 certifi==2022.12.7
 charset-normalizer==2.0.12
-confluent-kafka==1.9.2
+confluent-kafka==2.2.0
 decorator==5.1.1
 defusedxml==0.7.1
 fsspec==2022.1.0
