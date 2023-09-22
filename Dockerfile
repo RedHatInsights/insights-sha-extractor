@@ -11,7 +11,7 @@ COPY . $HOME
 
 ENV PATH="$VENV/bin:$PATH"
 
-RUN microdnf install --nodocs -y python3.11 unzip git-core && \
+RUN microdnf install --nodocs -y python3.11 unzip tar git-core && \
     python3.11 -m venv $VENV && \
     curl -ksL https://certs.corp.redhat.com/certs/2015-IT-Root-CA.pem -o /etc/pki/ca-trust/source/anchors/RH-IT-Root-CA.crt && \
     curl -ksL https://certs.corp.redhat.com/certs/2022-IT-Root-CA.pem -o /etc/pki/ca-trust/source/anchors/2022-IT-Root-CA.pem && \
