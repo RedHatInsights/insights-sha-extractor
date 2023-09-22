@@ -1,4 +1,4 @@
-FROM registry.access.redhat.com/ubi9:9.2-755
+FROM registry.access.redhat.com/ubi9-minimal:latest
 
 ENV CONFIG_PATH=/ccx-sha-extractor/config.yaml \
     VENV=/ccx-sha-extractor-venv \
@@ -11,15 +11,16 @@ COPY . $HOME
 
 ENV PATH="$VENV/bin:$PATH"
 
-RUN dnf install --nodocs -y python3-pip unzip git-core && \
-    python3 -m venv $VENV && \
+RUN microdnf install --nodocs -y python3.11 unzip git-core && \
+    python3.11 -m venv $VENV && \
     curl -ksL https://certs.corp.redhat.com/certs/2015-IT-Root-CA.pem -o /etc/pki/ca-trust/source/anchors/RH-IT-Root-CA.crt && \
     curl -ksL https://certs.corp.redhat.com/certs/2022-IT-Root-CA.pem -o /etc/pki/ca-trust/source/anchors/2022-IT-Root-CA.pem && \
     update-ca-trust && \
     pip install --no-cache-dir -U pip setuptools wheel && \
     pip install --no-cache-dir -r requirements.txt && \
-    dnf remove -y git-core && \
-    dnf clean all && \
+    microdnf remove -y git-core && \
+    microdnf clean all && \
+    rpm -e --nodeps sqlite-libs krb5-libs libxml2 expat readline pam openssh openssh-clients && \
     chmod -R g=u $HOME $VENV /etc/passwd && \
     chgrp -R 0 $HOME $VENV
 
