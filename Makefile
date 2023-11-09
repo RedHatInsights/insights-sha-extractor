@@ -16,8 +16,8 @@ tests: unit_tests
 unit_tests: ## Run unit tests
 	pytest -v -p no:cacheprovider
 
-coverage: ## Run unit tests, display code coverage on terminal
-	pytest -v -p no:cacheprovider --cov schemas/
+coverage: unit_tests ## Run unit tests, display code coverage on terminal
+	coverage report --fail-under=60
 
 coverage-report: ## Run unit tests, generate code coverage as a HTML report
 	pytest -v -p no:cacheprovider --cov schemas/ --cov-report=html
