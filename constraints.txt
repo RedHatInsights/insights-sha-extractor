@@ -10,7 +10,7 @@ black==23.11.0
 boto3==1.28.64
 botocore==1.31.64
 CacheControl==0.13.1
-ccx-messaging @ git+https://github.com/RedHatInsights/insights-ccx-messaging@1b0d813c494e42bdc0f7a989c772b586586200bc
+ccx-messaging @ git+https://github.com/RedHatInsights/insights-ccx-messaging@6dc3be5b51fab0073c4b1d1589b651c462535296
 certifi==2023.11.17
 charset-normalizer==3.3.2
 click==8.1.7
