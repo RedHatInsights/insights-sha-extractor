@@ -1,6 +1,6 @@
 .PHONY: help pycco
 
-SOURCES:=$(shell find . -name '*.py')
+SOURCES:=$(shell find insights_sha_extractor test -name '*.py')
 DOCFILES:=$(addprefix docs/packages/, $(addsuffix .html, $(basename ${SOURCES})))
 
 default: tests
