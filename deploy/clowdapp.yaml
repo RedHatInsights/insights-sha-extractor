@@ -151,7 +151,6 @@ objects:
         packages:
           - ccx_messaging
           - insights.specs.default
-          - insights_sha_extractor
           - pythonjsonlogger
           - pythonjsonlogger.jsonlogger
       service:
