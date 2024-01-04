@@ -23,13 +23,13 @@ echo '<?xml version="1.0" encoding="utf-8"?><testsuites><testsuite name="pytest"
 
 # TODO: Uncomment when smoke tests are created
 
-# function build_image() {
-#     source $CICD_ROOT/build.sh
-# }
+function build_image() {
+    source $CICD_ROOT/build.sh
+}
 
-# function deploy_ephemeral() {
-#     source $CICD_ROOT/deploy_ephemeral_env.sh
-# }
+function deploy_ephemeral() {
+    source $CICD_ROOT/deploy_ephemeral_env.sh
+}
 
 # function run_smoke_tests() {
 #     # component name needs to be re-export to match ClowdApp name (as bonfire requires for this)
@@ -38,14 +38,14 @@ echo '<?xml version="1.0" encoding="utf-8"?><testsuites><testsuite name="pytest"
 # }
 
 
-# # Install bonfire repo/initialize
-# CICD_URL=https://raw.githubusercontent.com/RedHatInsights/bonfire/master/cicd
-# curl -s $CICD_URL/bootstrap.sh > .cicd_bootstrap.sh && source .cicd_bootstrap.sh
-# echo "creating PR image"
-# build_image
+# Install bonfire repo/initialize
+CICD_URL=https://raw.githubusercontent.com/RedHatInsights/bonfire/master/cicd
+curl -s $CICD_URL/bootstrap.sh > .cicd_bootstrap.sh && source .cicd_bootstrap.sh
+echo "creating PR image"
+build_image
 
-# echo "deploying to ephemeral"
-# deploy_ephemeral
+echo "deploying to ephemeral"
+deploy_ephemeral
 
 # echo "running PR smoke tests"
 # run_smoke_tests
