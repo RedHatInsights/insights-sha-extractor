@@ -28,4 +28,4 @@ RUN microdnf install --nodocs -y python3.11 unzip tar git-core && \
 
 USER 1001
 
-CMD ["sh", "-c", "insights-sha-extractor $CONFIG_PATH"]
+CMD ["sh", "-c", "ccx-messaging $CONFIG_PATH"]

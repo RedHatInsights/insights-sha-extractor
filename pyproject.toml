@@ -25,7 +25,7 @@ classifiers = [
 requires-python = ">= 3.8"
 dependencies = [
     "app-common-python>=0.2.5",
-    "ccx-messaging>=3.5.9",
+    "ccx-messaging>=3.6.0",
     "insights-core-messaging>=1.2.4"
 ]
 
@@ -37,9 +37,6 @@ text = "Apache-2.0"
 
 [project.urls]
 Homepage = "https://gitlab.cee.redhat.com/ccx/ccx-sha-extractor"
-
-[project.scripts]
-insights-sha-extractor = "insights_sha_extractor.command_line:insights_sha_extractor"
 
 [project.optional-dependencies]
 dev = [

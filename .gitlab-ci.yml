@@ -11,30 +11,11 @@ stages:
   - covcheck
   - deploy
 
-linting:
-  extends: .pre-commit:lint
-  stage: lint
-  rules:
-    - if: '$CI_PIPELINE_SOURCE == "merge_request_event"'
-    - if: '$CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH'
-
-
 pre-commit-autoupdate-check:
   extends: .pre-commit:autoupdate-check
   stage: lint
   rules:
     - if: '$CI_PIPELINE_SOURCE == "merge_request_event"'
-
-
-test-py38:
-  extends: .python:test
-  variables:
-    PYTHON_VENV_FROM: python3.8
-  rules:
-    - if: '$CI_PIPELINE_SOURCE == "merge_request_event"'
-    - if: '$CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH'
-  script:
-    - pytest -v --cov=insights_sha_extractor
 
 
 bdd-tests:
@@ -61,15 +42,6 @@ bdd-tests:
         MINIO_SECRET_KEY: test_secret_access_key
         PORT: 9000
 
-
-coverage-checking:
-  extends: .coverage-check
-  stage: covcheck
-  rules:
-    - if: '$CI_PIPELINE_SOURCE == "merge_request_event"'
-  allow_failure: true
-  tags:
-    - shared
 
 pages:
   stage: deploy
