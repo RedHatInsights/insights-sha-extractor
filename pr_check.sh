@@ -17,10 +17,6 @@ CACHE_FROM_LATEST_IMAGE="false"
 # export IQE_TEST_IMPORTANCE=""
 # export IQE_CJI_TIMEOUT="30m"
 
-# Temporary stub
-mkdir -p artifacts
-echo '<?xml version="1.0" encoding="utf-8"?><testsuites><testsuite name="pytest" errors="0" failures="0" skipped="0" tests="1" time="0.014" timestamp="2021-05-13T07:54:11.934144" hostname="thinkpad-t480s"><testcase classname="test" name="test_stub" time="0.000" /></testsuite></testsuites>' > artifacts/junit-stub.xml
-
 function build_image() {
     source $CICD_ROOT/build.sh
 }
@@ -30,11 +26,12 @@ function deploy_ephemeral() {
 }
 
 # TODO: Uncomment when smoke tests are created
-# function run_smoke_tests() {
-#     # component name needs to be re-export to match ClowdApp name (as bonfire requires for this)
-#     export COMPONENT_NAME="ccx-sha-extractor"
-#     source $CICD_ROOT/cji_smoke_test.sh
-# }
+function run_smoke_tests() {
+    # component name needs to be re-export to match ClowdApp name (as bonfire requires for this)
+    # export COMPONENT_NAME="ccx-sha-extractor"
+    # source $CICD_ROOT/cji_smoke_test.sh
+    echo "To be implemented"
+}
 
 
 # Install bonfire repo/initialize
@@ -47,5 +44,10 @@ echo "deploying to ephemeral"
 deploy_ephemeral
 
 # TODO: Uncomment when smoke tests are created
-# echo "running PR smoke tests"
-# run_smoke_tests
+echo "running PR smoke tests"
+run_smoke_tests
+
+# Temporary stub
+mkdir -p artifacts
+TIMESTAMP=`date +%Y-%m-%dT%H:%M:%S.%N`
+echo '<?xml version="1.0" encoding="utf-8"?><testsuites><testsuite name="pytest" errors="0" failures="0" skipped="0" tests="1" time="0.000" timestamp="'${TIMESTAMP}'" hostname="'${HOST}'"><testcase classname="test" name="test_stub" time="0.000" /></testsuite></testsuites>' > artifacts/junit-stub.xml
