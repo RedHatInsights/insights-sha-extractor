@@ -96,17 +96,26 @@ objects:
             httpGet:
               path: /metrics
               port: 8000
+              scheme: HTTP
+            initialDelaySeconds: 20
+            successThreshold: 1
             periodSeconds: 10
           livenessProbe:
             httpGet:
               path: /metrics
               port: 8000
+              scheme: HTTP
+            initialDelaySeconds: 20
+            successThreshold: 1
             failureThreshold: 1
             periodSeconds: 10
           startupProbe:
             httpGet:
               path: /metrics
               port: 8000
+              scheme: HTTP
+            initialDelaySeconds: 20
+            successThreshold: 1
             # Wait for 10x10 seconds
             failureThreshold: 10
             periodSeconds: 10
