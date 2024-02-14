@@ -128,11 +128,11 @@ objects:
               name: ccx-sha-extractor-config
           resources:
             requests:
-              cpu: 100m
-              memory: 256Mi
+              cpu: ${CPU_REQUEST}
+              memory: ${MEMORY_REQUEST}
             limits:
-              cpu: 200m
-              memory: 512Mi
+              cpu: ${CPU_LIMIT}
+              memory: ${MEMORY_LIMIT}
 
     kafkaTopics:
       - replicas: 16
@@ -277,6 +277,14 @@ parameters:
 - description: Minimum number of pods to use when autoscaling is enabled
   name: MAX_REPLICAS
   value: '1'
+- name: CPU_LIMIT
+  value: 200m
+- name: MEMORY_LIMIT
+  value: 512Mi
+- name: CPU_REQUEST
+  value: 100m
+- name: MEMORY_REQUEST
+  value: 256Mi
 - name: CDP_INCOMING_TOPIC
   value: platform.upload.announce
   required: true
