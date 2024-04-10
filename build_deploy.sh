@@ -26,7 +26,7 @@ function job_cleanup() {
 
 trap job_cleanup EXIT ERR SIGINT SIGTERM
 
-export DOCKER_CONFIG="${TMP_JOB_DIR}/.docker"
+export DOCKER_CONF="${TMP_JOB_DIR}/.docker"
 
 mkdir -p "$DOCKER_CONF"
 docker --config="$DOCKER_CONF" login -u="$QUAY_USER" -p="$QUAY_TOKEN" quay.io
