@@ -25,8 +25,8 @@ classifiers = [
 requires-python = ">= 3.8"
 dependencies = [
     "app-common-python>=0.2.5",
-    "ccx-messaging>=3.6.2",
-    "insights-core-messaging>=1.2.4"
+    "ccx-messaging>=3.8.2",
+    "insights-core-messaging>=1.2.10"
 ]
 
 [tool.setuptools.packages.find]
