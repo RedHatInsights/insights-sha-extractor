@@ -1,7 +1,6 @@
 plugins:
   packages:
     - insights.specs.default
-    - insights_sha_extractor
     - pythonjsonlogger
     - pythonjsonlogger.jsonlogger
   configs:
@@ -13,11 +12,12 @@ service:
   format: insights.formats._json.JsonFormat
   target_components: []
   consumer:
-    name: ccx_messaging.consumers.consumer.Consumer
+    name: ccx_messaging.consumers.consumer.AnemicConsumer
     kwargs:
-      incoming_topic: ${CDP_INCOMING_TOPIC:platform.upload.testareno}
+      incoming_topic: ${CDP_INCOMING_TOPIC:platform.upload.announce}
       group_id: ${CDP_GROUP_ID:insights_sha_extractor_app}
       bootstrap_servers: ${CDP_CONSUMER_SERVER:kafka:29092}
+      platform_service: testareno
       processing_timeout_s: 0
       max_poll_records: 10
       max_poll_interval_ms: 600000
@@ -37,6 +37,8 @@ service:
     kwargs:
       outgoing_topic: ${CDP_OUTGOING_TOPIC:archive-results}
       bootstrap_servers: ${CDP_PRODUCER_SERVER:kafka:29092}
+  watchers:
+    - name: ccx_messaging.watchers.cluster_id_watcher.ClusterIdWatcher
 
   logging:
     version: 1
@@ -47,14 +49,6 @@ service:
         class: logging.StreamHandler
         stream: ext://sys.stdout
         formatter: json
-        filters:
-          - context_filter
-      logstash:
-        level: INFO
-        class: logstash.TCPLogstashHandler
-        host: "127.0.0.1"
-        port: 5000
-        version: 1
     formatters:
       brief:
         format: "%(message)s"
@@ -63,13 +57,9 @@ service:
         format: "%(filename)s %(lineno)d %(process)d %(levelname)s %(asctime)s %(name)s %(message)s"
       cloudwatch:
         format: "%(filename)s %(levelname)s %(asctime)s %(name)s %(hostname)s %(mac_address)s %(message)s"
-    filters:
-      context_filter:
-        (): "insights_sha_extractor.log_filter.LogFilter"
     root:
       handlers:
         - default
-        - logstash
     loggers:
       insights_messaging:
         level: DEBUG

@@ -5,8 +5,6 @@ metadata:
   name: ccx-sha-extractor
 objects:
 
-# TODO env. variables used
-# TODO env. variables passed
 
 - kind: HorizontalPodAutoscaler
   apiVersion: autoscaling/v1
@@ -20,7 +18,7 @@ objects:
     scaleTargetRef:
       apiVersion: apps/v1
       kind: Deployment
-      name: ccx-sha-extractor
+      name: ccx-sha-extractor-instance
     targetCPUUtilizationPercentage: 50
 
 - apiVersion: cloud.redhat.com/v1alpha1
@@ -32,7 +30,7 @@ objects:
     testing:
       iqePlugin: ccx
     deployments:
-      - name: ccx-sha-extractor
+      - name: instance
         minReplicas: ${{MIN_REPLICAS}}
         webServices:
           public:
@@ -47,34 +45,94 @@ objects:
               value: /data/config.yaml
             - name: CLOWDER_ENABLED
               value: ${CLOWDER_ENABLED}
-            - name: CDP_INCOMING_TOPIC
-              value: ${CDP_INCOMING_TOPIC}
             - name: CDP_GROUP_ID
               value: ${CDP_GROUP_ID}
+            - name: CDP_PLATFORM_SERVICE
+              value: ${CDP_PLATFORM_SERVICE}
             - name: CDP_CONSUMER_SERVER
               value: ${CDP_CONSUMER_SERVER}
-            - name: CDP_DEAD_LETTER_QUEUE_TOPIC
-              value: ${CDP_DEAD_LETTER_QUEUE_TOPIC}
-            - name: CDP_OUTGOING_TOPIC
-              value: ${CDP_OUTGOING_TOPIC}
             - name: CDP_PUBLISHER_SERVER
               value: ${CDP_PUBLISHER_SERVER}
             - name: SENTRY_DSN
               valueFrom:
                 secretKeyRef:
-                  key: SENTRY_DSN
-                  name: sentry-dsn
+                  key: dsn
+                  name: ccx-sha-extractor-dsn
                   optional: true
-            - name: SENTRY_CATCH_WARNINGS
-              value: '1'
+            - name: SENTRY_ENVIRONMENT
+              value: ${ENV_NAME}
+            - name: LOGGING_TO_CW_ENABLED
+              value: "True"
+            - name: CW_LOG_LEVEL
+              value: ${CW_LOG_LEVEL}
+            - name: CW_STREAM_NAME
+              value: ${CSE_LOG_STREAM}
+            - name: AWS_REGION_NAME
+              valueFrom:
+                secretKeyRef:
+                  name: cloudwatch
+                  key: aws_region
+                  optional: true
+            - name: CW_LOG_GROUP
+              valueFrom:
+                secretKeyRef:
+                  name: cloudwatch
+                  key: log_group_name
+                  optional: true
+            - name: CW_AWS_ACCESS_KEY_ID
+              valueFrom:
+                secretKeyRef:
+                  name: cloudwatch
+                  key: aws_access_key_id
+                  optional: true
+            - name: CW_AWS_SECRET_ACCESS_KEY
+              valueFrom:
+                secretKeyRef:
+                  name: cloudwatch
+                  key: aws_secret_access_key
+                  optional: true
           image: ${IMAGE}:${IMAGE_TAG}
+          readinessProbe:
+            httpGet:
+              path: /metrics
+              port: 8000
+              scheme: HTTP
+            initialDelaySeconds: 20
+            successThreshold: 1
+            periodSeconds: 10
+          livenessProbe:
+            httpGet:
+              path: /metrics
+              port: 8000
+              scheme: HTTP
+            initialDelaySeconds: 20
+            successThreshold: 1
+            failureThreshold: 1
+            periodSeconds: 10
+          startupProbe:
+            httpGet:
+              path: /metrics
+              port: 8000
+              scheme: HTTP
+            initialDelaySeconds: 20
+            successThreshold: 1
+            # Wait for 10x10 seconds
+            failureThreshold: 10
+            periodSeconds: 10
+          volumeMounts:
+            - mountPath: /data
+              name: ccx-sha-extractor-config
+          volumes:
+            - configMap:
+                name: ccx-sha-extractor-config-map
+              name: ccx-sha-extractor-config
           resources:
             requests:
-              cpu: 500m
-              memory: 512Mi
+              cpu: ${CPU_REQUEST}
+              memory: ${MEMORY_REQUEST}
             limits:
-              cpu: 1000m
-              memory: 1024Mi
+              cpu: ${CPU_LIMIT}
+              memory: ${MEMORY_LIMIT}
 
     kafkaTopics:
       - replicas: 16
@@ -85,7 +143,10 @@ objects:
         topicName: ${CDP_DEAD_LETTER_QUEUE_TOPIC}
       - replicas: 3
         partitions: 2
-        topicName: {CDP_OUTGOING_TOPIC}
+        topicName: ${CDP_OUTGOING_TOPIC}
+      - replicas: 3
+        partitions: 1
+        topicName: ${PAYLOAD_TRACKER_TOPIC}
 
 - kind: ConfigMap
   apiVersion: v1
@@ -97,8 +158,8 @@ objects:
     config.yaml: |-
       plugins:
         packages:
+          - ccx_messaging
           - insights.specs.default
-          - insights_sha_extractor
           - pythonjsonlogger
           - pythonjsonlogger.jsonlogger
       service:
@@ -107,28 +168,45 @@ objects:
         format: insights.formats._json.JsonFormat
         target_components: []
         consumer:
-          name: insights_sha_extractor.consumer.Consumer
+          name: ccx_messaging.consumers.kafka_consumer.KafkaConsumer
           kwargs:
             incoming_topic: ${CDP_INCOMING_TOPIC}
-            group_id: ${CDP_GROUP_ID}
-            bootstrap_servers: ${CDP_CONSUMER_SERVER}
+            platform_service: ${CDP_PLATFORM_SERVICE}
             processing_timeout_s: 0
-            max_poll_records: 10
-            max_poll_interval_ms: 600000
-            heartbeat_interval_ms: 10000
-            session_timeout_ms: 20000
             dead_letter_queue_topic: ${CDP_DEAD_LETTER_QUEUE_TOPIC}
+            group.id: ${CDP_GROUP_ID}
+            bootstrap.servers: ${CDP_CONSUMER_SERVER}
+            max.poll.interval.ms: 600000
+            heartbeat.interval.ms: 10000
+            session.timeout.ms: 20000
 
         downloader:
-          name: insights_sha_extractor.http_downloader.HTTPDownloader
+          name: ccx_messaging.downloaders.http_downloader.HTTPDownloader
           kwargs:
             max_archive_size: 100MiB
 
+        engine:
+          name: ccx_messaging.engines.sha_extractor_engine.SHAExtractorEngine
+          kwargs:
+            extract_timeout: 10
+
         publisher:
-          name: insights_sha_extractor.kafka_publisher.KafkaPublisher
+          name: ccx_messaging.publishers.workloads_info_publisher.WorkloadInfoPublisher
           kwargs:
             outgoing_topic: ${CDP_OUTGOING_TOPIC}
-            bootstrap_servers: ${CDP_PUBLISHER_SERVER}
+            bootstrap.servers: ${CDP_PUBLISHER_SERVER}
+            compression: gzip
+
+        watchers:
+          - name: ccx_messaging.watchers.cluster_id_watcher.ClusterIdWatcher
+          - name: ccx_messaging.watchers.payload_tracker_watcher.PayloadTrackerWatcher
+            kwargs:
+              service_name: ccx-sha-extractor
+              bootstrap.servers: mq-kafka:29092
+              topic: ${PAYLOAD_TRACKER_TOPIC}
+          - name: ccx_messaging.watchers.stats_watcher.StatsWatcher
+            kwargs:
+              prometheus_port: 8000
 
         logging:
           version: 1
@@ -139,8 +217,6 @@ objects:
               class: logging.StreamHandler
               stream: ext://sys.stdout
               formatter: json
-              filters:
-                - context_filter
           formatters:
             brief:
               format: "%(message)s"
@@ -149,20 +225,38 @@ objects:
               format: "%(filename)s %(lineno)d %(process)d %(levelname)s %(asctime)s %(name)s %(message)s"
             cloudwatch:
               format: "%(filename)s %(levelname)s %(asctime)s %(name)s %(hostname)s %(mac_address)s %(message)s"
-          filters:
-            context_filter:
-              (): "insights_sha_extractor.log_filter.LogFilter"
           root:
             handlers:
               - default
           loggers:
             insights_messaging:
               level: DEBUG
+            ccx_messaging:
+              level: DEBUG
             insights:
               level: WARNING
             insights_sha_extractor:
               level: DEBUG
 
+- kind: Service
+  apiVersion: v1
+  metadata:
+    annotations:
+      prometheus.io/path: /metrics
+      prometheus.io/port: "8000"
+      prometheus.io/scheme: http
+      prometheus.io/scrape: "true"
+    name: ccx-sha-extractor-prometheus-exporter
+    labels:
+      app: ccx-sha-extractor
+  spec:
+    ports:
+      - name: ccx-sha-extractor-port-metrics
+        port: 8000
+        protocol: TCP
+        targetPort: 8000
+    selector:
+      app: ccx-sha-extractor
 
 parameters:
 - description: Image name
@@ -183,8 +277,16 @@ parameters:
 - description: Minimum number of pods to use when autoscaling is enabled
   name: MAX_REPLICAS
   value: '1'
+- name: CPU_LIMIT
+  value: 200m
+- name: MEMORY_LIMIT
+  value: 512Mi
+- name: CPU_REQUEST
+  value: 100m
+- name: MEMORY_REQUEST
+  value: 256Mi
 - name: CDP_INCOMING_TOPIC
-  value: platform.upload.buckit
+  value: platform.upload.announce
   required: true
 - name: CDP_OUTGOING_TOPIC
   value: ccx.image.sha.results
@@ -192,12 +294,24 @@ parameters:
 - name: CDP_DEAD_LETTER_QUEUE_TOPIC
   value: ccx.sha.extractor.dead.letter.queue
   required: true
+- name: PAYLOAD_TRACKER_TOPIC
+  value: platform.payload-status
+  required: true
 - name: CDP_GROUP_ID
   value: ccx_sha_extractor_app
   required: true
 - name: CDP_CONSUMER_SERVER
   value: mq-kafka:29092
   required: true
+- description: Service name for filtering received Kafka message from announce topic
+  name: CDP_PLATFORM_SERVICE
+  required: true
+  value: openshift
 - name: CDP_PUBLISHER_SERVER
   value: mq-kafka:29092
   required: true
+- name: CLOUDWATCH_DEBUG
+  value: "false"
+  required: true
+- name: CSE_LOG_STREAM
+  value: "ccx-sha-extractor"

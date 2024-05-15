@@ -1,0 +1,58 @@
+include:
+  - project: ccx/ccx-gitlab-includes
+    ref: master
+    file: /ccx-lib.yml
+
+
+stages:
+  - lint
+  - test
+  - bddtests
+  - covcheck
+  - deploy
+
+pre-commit-autoupdate-check:
+  extends: .pre-commit:autoupdate-check
+  stage: lint
+  rules:
+    - if: '$CI_PIPELINE_SOURCE == "merge_request_event"'
+
+
+bdd-tests:
+  stage: bddtests
+  image: quay.io/cloudservices/insights-behavioral-spec:latest
+  variables:
+    PATH_TO_LOCAL_SHA_EXTRACTOR: "$CI_PROJECT_DIR"
+    BDD_PATH: /insights-behavioral-spec
+    VIRTUAL_ENV: /insights-behavioral-spec-venv/
+  script:
+    - cd $BDD_PATH
+    - source $VIRTUAL_ENV/bin/activate && make insights-sha-extractor-tests
+  rules:
+    - if: '$CI_PIPELINE_SOURCE == "merge_request_event"'
+    - if: '$CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH'
+  services:
+    - name: quay.io/ccxdev/kafka-no-zk:latest
+      alias: kafka
+    - name: quay.io/ccxdev/minio-server-ubi:latest
+      alias: minio
+      command: ["server", "/data"]
+      variables:
+        MINIO_ACCESS_KEY: test_access_key
+        MINIO_SECRET_KEY: test_secret_access_key
+        PORT: 9000
+
+
+pages:
+  stage: deploy
+  environment: production
+  image: python:3.10
+  script:
+  - pip install -r docs/requirements.txt
+  - jb build docs --path-output _build
+  - mv _build/_build/html public
+  artifacts:
+    paths:
+    - public
+  rules:
+  - if: $CI_COMMIT_REF_NAME == $CI_DEFAULT_BRANCH

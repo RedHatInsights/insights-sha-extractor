@@ -1,6 +1,3 @@
----
-layout: home
----
 # Description
 
 Insights SHA Extractor service intends to retrieve Insights gathered archives

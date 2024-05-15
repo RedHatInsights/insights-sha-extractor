@@ -1,7 +1,3 @@
----
-layout: page
-nav_order: 8
----
 # Deploy
 
 `insights-sha-extractor` runs in [console.redhat.com](https://console.redhat.com) and
