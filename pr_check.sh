@@ -3,14 +3,14 @@
 # --------------------------------------------
 # Options that must be configured by app owner
 # --------------------------------------------
-APP_NAME="ccx-data-pipeline"  # name of app-sre "application" folder this component lives in
-COMPONENT_NAME="ccx-sha-extractor"
-IMAGE="quay.io/cloudservices/ccx-sha-extractor"
-COMPONENTS="ccx-sha-extractor"  # space-separated list of components to laod
-COMPONENTS_W_RESOURCES="ccx-sha-extractor"  # component to keep
+APP_NAME="ocp-vulerability"  # name of app-sre "application" folder this component lives in
+COMPONENT_NAME="sha-extractor"
+IMAGE="quay.io/cloudservices/sha-extractor"
+COMPONENTS="sha-extractor"  # space-separated list of components to laod
+COMPONENTS_W_RESOURCES="sha-extractor"  # component to keep
 CACHE_FROM_LATEST_IMAGE="false"
 
-# export IQE_PLUGINS="ccx"
+# export IQE_PLUGINS="ocp-vulnerability"
 # export IQE_MARKER_EXPRESSION="smoke" # ccx_data_pipeline_smoke does not exits (at least yet) as marker in the plugin
 # export IQE_FILTER_EXPRESSION=""
 # export IQE_REQUIREMENTS_PRIORITY=""
