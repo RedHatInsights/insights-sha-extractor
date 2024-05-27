@@ -32,6 +32,8 @@ export IQE_FILTER_EXPRESSION="test_plugin_accessible"
 export IQE_REQUIREMENTS_PRIORITY=""
 export IQE_TEST_IMPORTANCE=""
 export IQE_CJI_TIMEOUT="30m"
+export IQE_ENV="insights-stage"
+
 
 function build_image() {
     source $CICD_ROOT/build.sh
