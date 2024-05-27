@@ -19,6 +19,7 @@ set -exv
 # Options that must be configured by app owner
 # --------------------------------------------
 APP_NAME="ocp-vulnerability"  # name of app-sre "application" folder this component lives in
+REF_ENV="insights-stage"
 COMPONENT_NAME="sha-extractor"
 IMAGE="quay.io/cloudservices/sha-extractor"
 COMPONENTS="sha-extractor"  # space-separated list of components to laod
@@ -32,7 +33,7 @@ export IQE_FILTER_EXPRESSION="test_plugin_accessible"
 export IQE_REQUIREMENTS_PRIORITY=""
 export IQE_TEST_IMPORTANCE=""
 export IQE_CJI_TIMEOUT="30m"
-export IQE_ENV="insights-stage"
+export IQE_ENV="ephemeral"
 
 
 function build_image() {
