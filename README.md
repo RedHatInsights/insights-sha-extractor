@@ -3,15 +3,16 @@
 
 [![Python 3.7](https://img.shields.io/badge/python-3.7-blue.svg)](https://www.python.org/downloads/release/python-370/)
 [![GitHub Pages](https://img.shields.io/badge/%20-GitHub%20Pages-informational)](https://supreme-garbanzo-c43cccab.pages.github.io/)
-[![License](https://img.shields.io/badge/license-Apache-blue)](https://gitlab.cee.redhat.com/ccx/ccx-sha-extractor/-/blob/master/LICENSE)
+[![License](https://img.shields.io/badge/license-Apache-blue)](https://github.com/RedHatInsights/insights-results-aggregator/blob/master/LICENSE)
 
 <!-- vim-markdown-toc GFM -->
 
-* [Description](#description)
-* [Documentation](#documentation)
-* [Makefile targets](#makefile-targets)
-* [BDD tests](#bdd-tests)
-* [Package manifest](#package-manifest)
+- [Insights SHA Extractor](#insights-sha-extractor)
+  - [Description](#description)
+  - [Documentation](#documentation)
+  - [Makefile targets](#makefile-targets)
+  - [BDD tests](#bdd-tests)
+  - [Package manifest](#package-manifest)
 
 <!-- vim-markdown-toc -->
 

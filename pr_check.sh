@@ -11,7 +11,7 @@ COMPONENTS_W_RESOURCES="sha-extractor"  # component to keep
 CACHE_FROM_LATEST_IMAGE="false"
 
 # export IQE_PLUGINS="ocp-vulnerability"
-# export IQE_MARKER_EXPRESSION="smoke" # ccx_data_pipeline_smoke does not exits (at least yet) as marker in the plugin
+# export IQE_MARKER_EXPRESSION="smoke"
 # export IQE_FILTER_EXPRESSION=""
 # export IQE_REQUIREMENTS_PRIORITY=""
 # export IQE_TEST_IMPORTANCE=""
@@ -28,7 +28,7 @@ function deploy_ephemeral() {
 # TODO: Uncomment when smoke tests are created
 function run_smoke_tests() {
     # component name needs to be re-export to match ClowdApp name (as bonfire requires for this)
-    # export COMPONENT_NAME="ccx-sha-extractor"
+    # export COMPONENT_NAME="sha-extractor"
     # source $CICD_ROOT/cji_smoke_test.sh
     echo "To be implemented"
 }
