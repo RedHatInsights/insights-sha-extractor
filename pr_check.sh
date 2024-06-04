@@ -27,7 +27,7 @@ COMPONENTS_W_RESOURCES="sha-extractor"  # component to keep
 CACHE_FROM_LATEST_IMAGE="true"
 DEPLOY_FRONTENDS="false"
 
-export IQE_PLUGINS="ocp-vulnerability"
+export IQE_PLUGINS="ocp_vulnerability"
 export IQE_MARKER_EXPRESSION=""
 export IQE_FILTER_EXPRESSION="test_plugin_accessible"
 export IQE_REQUIREMENTS_PRIORITY=""
