@@ -13,13 +13,11 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-set -exv
-
 # --------------------------------------------
 # Options that must be configured by app owner
 # --------------------------------------------
 APP_NAME="ocp-vulnerability"  # name of app-sre "application" folder this component lives in
-REF_ENV="insights-stage"
+REF_ENV="insights-production"
 COMPONENT_NAME="sha-extractor"
 IMAGE="quay.io/cloudservices/sha-extractor"
 COMPONENTS="sha-extractor"  # space-separated list of components to laod
@@ -46,9 +44,8 @@ function deploy_ephemeral() {
 
 function run_smoke_tests() {
     # component name needs to be re-export to match ClowdApp name (as bonfire requires for this)
-    # export COMPONENT_NAME="sha-extractor"
-    # source $CICD_ROOT/cji_smoke_test.sh
-    echo "To be implemented"
+    source $CICD_ROOT/cji_smoke_test.sh
+    source $CICD_ROOT/post_test_results.sh  # publish results in Ibutsu
 }
 
 
@@ -63,8 +60,3 @@ deploy_ephemeral
 
 echo "running PR smoke tests"
 run_smoke_tests
-
-# Temporary stub
-#mkdir -p artifacts
-#TIMESTAMP=`date +%Y-%m-%dT%H:%M:%S.%N`
-#echo '<?xml version="1.0" encoding="utf-8"?><testsuites><testsuite name="pytest" errors="0" failures="0" skipped="0" tests="1" time="0.000" timestamp="'${TIMESTAMP}'" hostname="'${HOST}'"><testcase classname="test" name="test_stub" time="0.000" /></testsuite></testsuites>' > artifacts/junit-stub.xml
