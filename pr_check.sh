@@ -20,7 +20,10 @@ APP_NAME="ocp-vulnerability"  # name of app-sre "application" folder this compon
 REF_ENV="insights-production"
 COMPONENT_NAME="sha-extractor"
 IMAGE="quay.io/cloudservices/sha-extractor"
-COMPONENTS="sha-extractor"  # space-separated list of components to laod
+# NOTE: test case "test_plugin_accessible" requires vuln4shift-backend because
+#       ocp_vulnerability plugin does DB initialization when test cases are loaded
+#       without it the test case in pr_check does not work.
+COMPONENTS="sha-extractor vuln4shift-backend"  # space-separated list of components to laod
 COMPONENTS_W_RESOURCES="sha-extractor"  # component to keep
 CACHE_FROM_LATEST_IMAGE="true"
 DEPLOY_FRONTENDS="false"
