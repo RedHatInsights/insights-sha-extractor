@@ -31,7 +31,9 @@ export IQE_FILTER_EXPRESSION="test_plugin_accessible"
 export IQE_REQUIREMENTS_PRIORITY=""
 export IQE_TEST_IMPORTANCE=""
 export IQE_CJI_TIMEOUT="30m"
+export IQE_SELENIUM="false"
 export IQE_ENV="ephemeral"
+export IQE_ENV_VARS="DYNACONF_USER_PROVIDER__rbac_enabled=false, DYNACONF_USER_PROVIDER__keycloak_crud=false"
 
 
 function build_image() {
