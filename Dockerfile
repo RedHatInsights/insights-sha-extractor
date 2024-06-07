@@ -1,8 +1,8 @@
 FROM registry.access.redhat.com/ubi9-minimal:latest
 
-ENV CONFIG_PATH=/ccx-sha-extractor/config.yaml \
-    VENV=/ccx-sha-extractor-venv \
-    HOME=/ccx-sha-extractor \
+ENV CONFIG_PATH=/sha-extractor/config.yaml \
+    VENV=/sha-extractor-venv \
+    HOME=/sha-extractor \
     REQUESTS_CA_BUNDLE=/etc/pki/tls/certs/ca-bundle.crt
 
 WORKDIR $HOME
