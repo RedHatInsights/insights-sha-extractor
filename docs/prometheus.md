@@ -4,7 +4,7 @@ The project allows to expose some metrics to **Prometheus** if desired. To
 enable it, you should add the
 `ccx_messaging.watchers.stats_watcher.StatsWatcher` to the configuration
 file, as shown in the [provided
-one](https://gitlab.cee.redhat.com/ccx/ccx-sha-extractor/-/blob/master/config.yaml).
+one](https://github.com/RedHatInsights/insights-sha-extractor/-/blob/master/config.yaml).
 
 The exposed metrics are 6 counters and 3 histograms:
 

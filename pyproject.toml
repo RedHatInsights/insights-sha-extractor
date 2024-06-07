@@ -36,7 +36,7 @@ include = ["insights_sha_extractor"]
 text = "Apache-2.0"
 
 [project.urls]
-Homepage = "https://gitlab.cee.redhat.com/ccx/ccx-sha-extractor"
+Homepage = "https://github.com/RedHatInsights/insights-sha-extractor/"
 
 [project.optional-dependencies]
 dev = [

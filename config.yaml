@@ -37,7 +37,7 @@ service:
   watchers:
     - name: ccx_messaging.watchers.payload_tracker_watcher.PayloadTrackerWatcher
       kwargs:
-        service_name: ccx-sha-extractor
+        service_name: sha-extractor
         bootstrap.servers: mq-kafka:29092
         topic: platform.payload-status
     - name: ccx_messaging.watchers.stats_watcher.StatsWatcher
