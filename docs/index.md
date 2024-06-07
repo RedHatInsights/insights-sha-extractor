@@ -28,9 +28,3 @@ on Insights Core Messaging framework.
 
 1.  Steps 1 to 4 are shared with the CCX Data pipeline
 2.  Step 8 is performed by service owned by the OCP Vulnerability team
-
-## Integration with other services
-
-Please look at [CCX Docs/Customer
-Services](https://ccx.pages.redhat.com/ccx-docs/) for
-an explanation how the CCX Data Pipeline is connected with other services.
