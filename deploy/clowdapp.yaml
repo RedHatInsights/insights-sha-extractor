@@ -95,7 +95,7 @@ objects:
           readinessProbe:
             httpGet:
               path: /metrics
-              port: 8000
+              port: 9000
               scheme: HTTP
             initialDelaySeconds: 20
             successThreshold: 1
@@ -103,7 +103,7 @@ objects:
           livenessProbe:
             httpGet:
               path: /metrics
-              port: 8000
+              port: 9000
               scheme: HTTP
             initialDelaySeconds: 20
             successThreshold: 1
@@ -112,7 +112,7 @@ objects:
           startupProbe:
             httpGet:
               path: /metrics
-              port: 8000
+              port: 9000
               scheme: HTTP
             initialDelaySeconds: 20
             successThreshold: 1
@@ -206,7 +206,7 @@ objects:
               topic: ${PAYLOAD_TRACKER_TOPIC}
           - name: ccx_messaging.watchers.stats_watcher.StatsWatcher
             kwargs:
-              prometheus_port: 8000
+              prometheus_port: 9000
 
         logging:
           version: 1
@@ -243,7 +243,7 @@ objects:
   metadata:
     annotations:
       prometheus.io/path: /metrics
-      prometheus.io/port: "8000"
+      prometheus.io/port: "9000"
       prometheus.io/scheme: http
       prometheus.io/scrape: "true"
     name: sha-extractor-prometheus-exporter
@@ -252,9 +252,9 @@ objects:
   spec:
     ports:
       - name: sha-extractor-port-metrics
-        port: 8000
+        port: 9000
         protocol: TCP
-        targetPort: 8000
+        targetPort: 9000
     selector:
       app: sha-extractor
 
