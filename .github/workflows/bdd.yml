@@ -39,7 +39,7 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v3
       - name: Run BDD tests
-        run: cd $BDD_PATH && make insights-sha-extractor-test
+        run: cd $BDD_PATH && make insights-sha-extractor-tests
 #      - name: Rename logs
 #        # Otherwise the upload-artifact action will complain
 #        run: for filename in "$BDD_PATH"/logs/insights-content-template-renderer/*; do mv -n "$filename" "$(echo "$filename" | sed -e 's/["><]//g')";  done
