@@ -1,46 +1,49 @@
-# Copyright 2023 Red Hat, Inc
-#
-# Licensed under the Apache License, Version 2.0 (the "License");
-# you may not use this file except in compliance with the License.
-# You may obtain a copy of the License at
-#
-#      http://www.apache.org/licenses/LICENSE-2.0
-#
-# Unless required by applicable law or agreed to in writing, software
-# distributed under the License is distributed on an "AS IS" BASIS,
-# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-# See the License for the specific language governing permissions and
-# limitations under the License.
+name: Run tests
 
-name: BDD tests
-
-on:
-  push:
-    branches: ["master", "main"]
-  pull_request:
+on: [push, pull_request]
 
 jobs:
+#  unit:
+#    runs-on: ubuntu-latest
+#    strategy:
+#      matrix:
+#        python-version: ["3.9", "3.10"]
+#    steps:
+#      - uses: actions/checkout@v3
+#      - name: Set up Python ${{ matrix.python-version }}
+#        uses: actions/setup-python@v4
+#        with:
+#          python-version: ${{ matrix.python-version }}
+#      - name: Install dependencies
+#        run: |
+#          python -m pip install --upgrade pip
+#          pip install flake8 pytest
+#          if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
+#      - name: Lint with flake8
+#        run: |
+#          # stop the build if there are Python syntax errors or undefined names
+#          flake8 . --count --select=E9,F63,F7,F82 --show-source --statistics
+#          # exit-zero treats all errors as warnings. The GitHub editor is 127 chars wide
+#          flake8 . --count --exit-zero --max-complexity=10 --max-line-length=127 --statistics
+#      - name: Test with pytest
+#        run: |
+#          pytest -vv
   bdd:
-    runs-on: ubuntu-20.04
-    strategy:
-      matrix:
-        go-version:
-          - "1.20"
-    name: BDD for Go ${{ matrix.go-version}}
+    runs-on: ubuntu-latest
+    container: quay.io/cloudservices/insights-behavioral-spec:latest
+    env:
+      #PATH_TO_LOCAL_TEMPLATE_RENDERER: "${{ github.workspace }}"
+      BDD_PATH: /insights-behavioral-spec
+      VIRTUAL_ENV: /insights-behavioral-spec-venv/
     steps:
-      - uses: actions/checkout@v4
-        with:
-          fetch-depth: 0
-          fetch-tags: true
-      - name: Setup Go
-        uses: actions/setup-go@v4
-        with:
-          go-version: ${{ matrix.go-version }}
-      - name: Build project
-        run: make build
-      - name: Retrieve Docker compose file
-        run: wget -O docker-compose.yml https://raw.githubusercontent.com/RedHatInsights/insights-behavioral-spec/main/docker-compose.yml
-      - name: Retrieve BDD runner
-        run: wget -O bdd_runner.sh https://raw.githubusercontent.com/RedHatInsights/insights-behavioral-spec/main/run_in_docker.sh && chmod +x bdd_runner.sh
-      - name: Run BDD
-        run: ./bdd_runner.sh insights_sha_extractor_test .
+      - name: Checkout
+        uses: actions/checkout@v3
+      - name: Run BDD tests
+        run: cd $BDD_PATH && make insights-sha-extractor-test
+#      - name: Rename logs
+#        # Otherwise the upload-artifact action will complain
+#        run: for filename in "$BDD_PATH"/logs/insights-content-template-renderer/*; do mv -n "$filename" "$(echo "$filename" | sed -e 's/["><]//g')";  done
+#      - uses: actions/upload-artifact@v3
+#        with:
+#          name: logs
+#          path: /insights-behavioral-spec/logs/insights-content-template-renderer
