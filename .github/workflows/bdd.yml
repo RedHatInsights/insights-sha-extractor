@@ -3,47 +3,30 @@ name: Run tests
 on: [push, pull_request]
 
 jobs:
-#  unit:
-#    runs-on: ubuntu-latest
-#    strategy:
-#      matrix:
-#        python-version: ["3.9", "3.10"]
-#    steps:
-#      - uses: actions/checkout@v3
-#      - name: Set up Python ${{ matrix.python-version }}
-#        uses: actions/setup-python@v4
-#        with:
-#          python-version: ${{ matrix.python-version }}
-#      - name: Install dependencies
-#        run: |
-#          python -m pip install --upgrade pip
-#          pip install flake8 pytest
-#          if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
-#      - name: Lint with flake8
-#        run: |
-#          # stop the build if there are Python syntax errors or undefined names
-#          flake8 . --count --select=E9,F63,F7,F82 --show-source --statistics
-#          # exit-zero treats all errors as warnings. The GitHub editor is 127 chars wide
-#          flake8 . --count --exit-zero --max-complexity=10 --max-line-length=127 --statistics
-#      - name: Test with pytest
-#        run: |
-#          pytest -vv
   bdd:
-    runs-on: ubuntu-latest
-    container: quay.io/cloudservices/insights-behavioral-spec:latest
-    env:
-      PATH_TO_LOCAL_SHA_EXTRACTOR: "${{ github.workspace }}"
-      BDD_PATH: /insights-behavioral-spec
-      VIRTUAL_ENV: /insights-behavioral-spec-venv/
+    runs-on: ubuntu-20.04
     steps:
       - name: Checkout
         uses: actions/checkout@v3
-      - name: Run BDD tests
-        run: cd $BDD_PATH && make insights-sha-extractor-tests
-#      - name: Rename logs
-#        # Otherwise the upload-artifact action will complain
-#        run: for filename in "$BDD_PATH"/logs/insights-content-template-renderer/*; do mv -n "$filename" "$(echo "$filename" | sed -e 's/["><]//g')";  done
-#      - uses: actions/upload-artifact@v3
-#        with:
-#          name: logs
-#          path: /insights-behavioral-spec/logs/insights-content-template-renderer
+      - name: Retrieve Docker compose file
+        run: wget -O docker-compose.yml https://raw.githubusercontent.com/RedHatInsights/insights-behavioral-spec/main/docker-compose.yml
+      - name: Retrieve BDD runner
+        run: wget -O bdd_runner.sh https://raw.githubusercontent.com/RedHatInsights/insights-behavioral-spec/main/run_in_docker.sh && chmod +x bdd_runner.sh
+      - name: Run BDD
+        run: ./bdd_runner.sh insights-sha-extractor-tests .
+      - name: Set container ID as env
+        if: always()
+        run: echo "BDD_CONTAINER=$(docker ps | grep 'insights-behavioral-spec:latest' | cut -d ' ' -f 1)" >> $GITHUB_ENV
+      - name: Debug
+        if: always()
+        run: docker exec -u root "$BDD_CONTAINER" /bin/bash -c "ls -R /insights-behavioral-spec/logs"
+      - name: Copy logs from container to host
+        if: always()
+        run: docker cp "$BDD_CONTAINER:/insights-behavioral-spec/logs/insights_sha_extractor.log" .
+      - name: Store service logs
+        if: always()
+        uses: actions/upload-artifact@v3
+        with:
+          name: store-logs
+          path: insights_sha_extractor.log
+
