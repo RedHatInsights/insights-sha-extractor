@@ -32,7 +32,7 @@ jobs:
     runs-on: ubuntu-latest
     container: quay.io/cloudservices/insights-behavioral-spec:latest
     env:
-      #PATH_TO_LOCAL_TEMPLATE_RENDERER: "${{ github.workspace }}"
+      PATH_TO_LOCAL_SHA_EXTRACTOR: "${{ github.workspace }}"
       BDD_PATH: /insights-behavioral-spec
       VIRTUAL_ENV: /insights-behavioral-spec-venv/
     steps:
