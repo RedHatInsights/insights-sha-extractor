@@ -29,4 +29,3 @@ jobs:
         with:
           name: store-logs
           path: insights_sha_extractor.log
-
