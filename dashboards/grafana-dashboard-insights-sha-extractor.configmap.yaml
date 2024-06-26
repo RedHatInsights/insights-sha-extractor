@@ -1103,8 +1103,8 @@ data:
           {
             "current": {
               "selected": true,
-              "text": "data-pipeline-prod",
-              "value": "data-pipeline-prod"
+              "text": "ocp-vulnerability-prod",
+              "value": "ocp-vulnerability-prod"
             },
             "hide": 0,
             "includeAll": false,
@@ -1114,16 +1114,16 @@ data:
             "options": [
               {
                 "selected": false,
-                "text": "data-pipeline-stage",
-                "value": "data-pipeline-stage"
+                "text": "ocp-vulnerability-stage",
+                "value": "ocp-vulnerability-stage"
               },
               {
                 "selected": true,
-                "text": "data-pipeline-prod",
-                "value": "data-pipeline-prod"
+                "text": "ocp-vulnerability-prod",
+                "value": "ocp-vulnerability-prod"
               }
             ],
-            "query": "data-pipeline-stage,data-pipeline-prod",
+            "query": "ocp-vulnerability-stage,ocp-vulnerability-prod",
             "queryValue": "",
             "skipUrlSync": false,
             "type": "custom"
