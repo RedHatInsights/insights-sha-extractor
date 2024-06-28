@@ -1,28 +1,23 @@
-# Book settings
-# Learn more at https://jupyterbook.org/customize/config.html
+title: Insights SHA Extractor
+description: SHA Extractor service exports SHAs of images
+baseurl: /insights-sha-extractor
+url: "https://redhatinsights.github.io"
+repository: "RedHatInsights/insights-sha-extractor"
 
-title: My sample book
-author: The Jupyter Book Community
-logo: logo.png
+heading_anchors: true
+search_enabled: false
 
-# Force re-execution of notebooks on each build.
-# See https://jupyterbook.org/content/execute.html
-execute:
-  execute_notebooks: force
+footer_content: "Copyright &copy; 2024 Red Hat, Inc.</a>"
 
-# Define the name of the latex output file for PDF builds
-latex:
-  latex_documents:
-    targetname: book.tex
+# Build settings
+# markdown: kramdown
+remote_theme: pmarsceill/just-the-docs
+plugins:
+  - jekyll-feed
+  - jekyll-remote-theme
 
-# Information about where the book exists on the web
-repository:
-  url: https://github.com/RedHatInsights/insights-sha-extractor/ 
-  path_to_book: docs  # Optional path to your book, relative to the repository root
-  branch: master  # Which branch of the repository should be used when creating links (optional)
-
-# Add GitHub buttons to your book
-# See https://jupyterbook.org/customize/config.html#add-a-link-to-your-repository
-html:
-  use_issues_button: false
-  use_repository_button: true
+exclude:
+  - Gemfile
+  - Gemfile.lock
+  - vendor/
+  - sources.tmpl.md
