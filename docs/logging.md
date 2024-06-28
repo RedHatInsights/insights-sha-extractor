@@ -1,3 +1,7 @@
+---
+layout: page
+nav_order: 5
+---
 # Logging
 
 The log format is highly configurable through the configuration file. By
