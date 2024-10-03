@@ -2,8 +2,7 @@ FROM registry.access.redhat.com/ubi9-minimal:latest
 
 ENV CONFIG_PATH=/sha-extractor/config.yaml \
     VENV=/sha-extractor-venv \
-    HOME=/sha-extractor \
-    REQUESTS_CA_BUNDLE=/etc/pki/tls/certs/ca-bundle.crt
+    HOME=/sha-extractor
 
 WORKDIR $HOME
 
@@ -14,9 +13,6 @@ ENV PATH="$VENV/bin:$PATH" \
 
 RUN microdnf install --nodocs -y python3.11 unzip tar git-core && \
     python3.11 -m venv $VENV && \
-    curl -ksL https://certs.corp.redhat.com/certs/2015-IT-Root-CA.pem -o /etc/pki/ca-trust/source/anchors/RH-IT-Root-CA.crt && \
-    curl -ksL https://certs.corp.redhat.com/certs/2022-IT-Root-CA.pem -o /etc/pki/ca-trust/source/anchors/2022-IT-Root-CA.pem && \
-    update-ca-trust && \
     pip install --no-cache-dir -U pip setuptools && \
     pip install --no-cache-dir . && \
     microdnf remove -y git-core && \
