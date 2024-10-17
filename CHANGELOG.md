@@ -1,6 +1,15 @@
 # CHANGELOG
 
 
+## v1.0.1 (2024-10-17)
+
+### Chores
+
+* chore(deps): update pre-commit hook pre-commit/pre-commit-hooks to v5
+
+Signed-off-by: red-hat-konflux <126015336+red-hat-konflux[bot]@users.noreply.github.com> ([`075def9`](https://github.com/RedHatInsights/insights-sha-extractor/commit/075def9432c003ad7eabe94549059fcdb4e928c9))
+
+
 ## v1.0.0 (2024-10-17)
 
 ### Chores
