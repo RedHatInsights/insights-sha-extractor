@@ -1,6 +1,13 @@
 # CHANGELOG
 
 
+## v1.0.2 (2024-10-17)
+
+### Continuous Integration
+
+* ci: only build tagged commits ([`adac51c`](https://github.com/RedHatInsights/insights-sha-extractor/commit/adac51c26bdde7d51506b2832eca7a0fa810b599))
+
+
 ## v1.0.1 (2024-10-17)
 
 ### Chores
