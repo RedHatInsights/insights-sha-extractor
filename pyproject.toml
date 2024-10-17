@@ -1,10 +1,30 @@
+[tool.semantic_release]
+version_toml = ["pyproject.toml:project.version"]
+commit_author = "vmaas-bot <40663028+vmaas-bot@users.noreply.github.com>"
+
+[tool.semantic_release.commit_parser_options]
+allowed_tags = [
+    "build",
+    "chore",
+    "ci",
+    "docs",
+    "feat",
+    "fix",
+    "perf",
+    "style",
+    "refactor",
+    "test",
+]
+minor_tags = ["feat"]
+patch_tags = ["build", "chore", "ci", "fix", "perf", "refactor"]
+
 [build-system]
 requires = ["setuptools>=64", "setuptools_scm>=8"]
 build-backend = "setuptools.build_meta"
 
 [project]
 name = "insights-sha-extractor"
-dynamic = ["version"]
+version = "1.0.0"
 readme = "README.md"
 authors = [
     {name="CCX Processing Team", email="ccx-core-processing-team@redhat.com"}
