@@ -1,6 +1,15 @@
 # CHANGELOG
 
 
+## v1.0.6 (2024-10-24)
+
+### Chores
+
+* chore(deps): update konflux references to ac89883
+
+Signed-off-by: red-hat-konflux <126015336+red-hat-konflux[bot]@users.noreply.github.com> ([`20354d3`](https://github.com/RedHatInsights/insights-sha-extractor/commit/20354d3a72090836d6e45c7acbc3f0932940a6d3))
+
+
 ## v1.0.5 (2024-10-24)
 
 ### Chores
