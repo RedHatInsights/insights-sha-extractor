@@ -1,6 +1,15 @@
 # CHANGELOG
 
 
+## v1.0.13 (2024-11-05)
+
+### Chores
+
+* chore(deps): update konflux references to fedcfe0
+
+Signed-off-by: red-hat-konflux <126015336+red-hat-konflux[bot]@users.noreply.github.com> ([`50ecd8d`](https://github.com/RedHatInsights/insights-sha-extractor/commit/50ecd8d6c83e46f7e996a2e572ed190f8a050c06))
+
+
 ## v1.0.12 (2024-11-01)
 
 ### Chores
