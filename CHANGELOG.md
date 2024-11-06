@@ -1,6 +1,13 @@
 # CHANGELOG
 
 
+## v1.0.15 (2024-11-06)
+
+### Continuous Integration
+
+* ci: add new mandatory RPM signature scan task to tekton ([`44d8269`](https://github.com/RedHatInsights/insights-sha-extractor/commit/44d8269ecc5dc739d60b96381f6466168148e7fc))
+
+
 ## v1.0.14 (2024-11-05)
 
 ### Chores
