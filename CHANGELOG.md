@@ -1,6 +1,15 @@
 # CHANGELOG
 
 
+## v1.0.16 (2024-11-06)
+
+### Chores
+
+* chore(deps): update konflux references to e2e7aab
+
+Signed-off-by: red-hat-konflux <126015336+red-hat-konflux[bot]@users.noreply.github.com> ([`db6f115`](https://github.com/RedHatInsights/insights-sha-extractor/commit/db6f11574040da3d933995bfefccef82f7467fd2))
+
+
 ## v1.0.15 (2024-11-06)
 
 ### Continuous Integration
