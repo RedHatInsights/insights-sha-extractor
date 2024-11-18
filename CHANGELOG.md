@@ -1,6 +1,16 @@
 # CHANGELOG
 
 
+## v1.0.19 (2024-11-18)
+
+### Chores
+
+- **deps**: Update konflux references
+  ([`dc7569a`](https://github.com/RedHatInsights/insights-sha-extractor/commit/dc7569a9fa0fd1fed5c6b5d6cd96109a49f27c37))
+
+Signed-off-by: red-hat-konflux <126015336+red-hat-konflux[bot]@users.noreply.github.com>
+
+
 ## v1.0.18 (2024-11-11)
 
 ### Continuous Integration
