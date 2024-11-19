@@ -1,6 +1,16 @@
 # CHANGELOG
 
 
+## v1.0.20 (2024-11-19)
+
+### Chores
+
+- **deps**: Update dependency insights-ccx-messaging to v3.8.5
+  ([`308016c`](https://github.com/RedHatInsights/insights-sha-extractor/commit/308016c6845e1e28a32e34c006b82a956aa4e44f))
+
+Signed-off-by: red-hat-konflux <126015336+red-hat-konflux[bot]@users.noreply.github.com>
+
+
 ## v1.0.19 (2024-11-18)
 
 ### Chores
