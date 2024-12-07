@@ -1,6 +1,16 @@
 # CHANGELOG
 
 
+## v1.0.23 (2024-12-07)
+
+### Chores
+
+- **deps**: Update konflux references
+  ([`109a19e`](https://github.com/RedHatInsights/insights-sha-extractor/commit/109a19e735903d5533e018a380ddb104d0b52db6))
+
+Signed-off-by: red-hat-konflux <126015336+red-hat-konflux[bot]@users.noreply.github.com>
+
+
 ## v1.0.22 (2024-11-30)
 
 ### Chores
@@ -224,26 +234,17 @@ Signed-off-by: red-hat-konflux <126015336+red-hat-konflux[bot]@users.noreply.git
 
 ### Chores
 
+- Automerge PRs updating konflux references
+  ([`23f0376`](https://github.com/RedHatInsights/insights-sha-extractor/commit/23f0376248a8b12a6c4ece7a2ecc3ab4882cabe1))
+
 - Enable python-semantic-release
   ([`9f210cb`](https://github.com/RedHatInsights/insights-sha-extractor/commit/9f210cb617acf7659f28d8155a02724099cbd239))
 
-- **deps**: Update konflux references to 67f0290
-  ([`54d25d5`](https://github.com/RedHatInsights/insights-sha-extractor/commit/54d25d575c2b46a91eb56ac217ed6cb5039bba4e))
-
-Signed-off-by: red-hat-konflux <126015336+red-hat-konflux[bot]@users.noreply.github.com>
+- Internal cert shouldn't be needed (allows Konflux build)
+  ([`7dc918f`](https://github.com/RedHatInsights/insights-sha-extractor/commit/7dc918fce5e9391042c5e2ce36940a4939e48cdc))
 
 - **deps**: Update konflux references
   ([`d23870f`](https://github.com/RedHatInsights/insights-sha-extractor/commit/d23870f0949ba0d7ebb6587db26df8d8668aa7cb))
-
-Signed-off-by: red-hat-konflux <126015336+red-hat-konflux[bot]@users.noreply.github.com>
-
-- **deps**: Update konflux references to 674e70f
-  ([`7b72d6e`](https://github.com/RedHatInsights/insights-sha-extractor/commit/7b72d6e7cad3025f765bae12e8dd0f385b4170a4))
-
-Signed-off-by: red-hat-konflux <126015336+red-hat-konflux[bot]@users.noreply.github.com>
-
-- **deps**: Update konflux references to 2d6e09f
-  ([`d469ff5`](https://github.com/RedHatInsights/insights-sha-extractor/commit/d469ff52e21e996de8a11ff1186854b957a8dc44))
 
 Signed-off-by: red-hat-konflux <126015336+red-hat-konflux[bot]@users.noreply.github.com>
 
@@ -252,8 +253,8 @@ Signed-off-by: red-hat-konflux <126015336+red-hat-konflux[bot]@users.noreply.git
 
 Signed-off-by: red-hat-konflux <126015336+red-hat-konflux[bot]@users.noreply.github.com>
 
-- **deps**: Update konflux references to 7a92ef9
-  ([`ec95755`](https://github.com/RedHatInsights/insights-sha-extractor/commit/ec9575581340735fea529eefc843ed20efc4444b))
+- **deps**: Update konflux references to 2d6e09f
+  ([`d469ff5`](https://github.com/RedHatInsights/insights-sha-extractor/commit/d469ff52e21e996de8a11ff1186854b957a8dc44))
 
 Signed-off-by: red-hat-konflux <126015336+red-hat-konflux[bot]@users.noreply.github.com>
 
@@ -262,13 +263,22 @@ Signed-off-by: red-hat-konflux <126015336+red-hat-konflux[bot]@users.noreply.git
 
 Signed-off-by: red-hat-konflux <126015336+red-hat-konflux[bot]@users.noreply.github.com>
 
+- **deps**: Update konflux references to 674e70f
+  ([`7b72d6e`](https://github.com/RedHatInsights/insights-sha-extractor/commit/7b72d6e7cad3025f765bae12e8dd0f385b4170a4))
+
+Signed-off-by: red-hat-konflux <126015336+red-hat-konflux[bot]@users.noreply.github.com>
+
+- **deps**: Update konflux references to 67f0290
+  ([`54d25d5`](https://github.com/RedHatInsights/insights-sha-extractor/commit/54d25d575c2b46a91eb56ac217ed6cb5039bba4e))
+
+Signed-off-by: red-hat-konflux <126015336+red-hat-konflux[bot]@users.noreply.github.com>
+
+- **deps**: Update konflux references to 7a92ef9
+  ([`ec95755`](https://github.com/RedHatInsights/insights-sha-extractor/commit/ec9575581340735fea529eefc843ed20efc4444b))
+
+Signed-off-by: red-hat-konflux <126015336+red-hat-konflux[bot]@users.noreply.github.com>
+
 - **deps**: Update konflux references to e107cfd
   ([`833a2eb`](https://github.com/RedHatInsights/insights-sha-extractor/commit/833a2eb34649007b150e7f87a53deedbaf9a115a))
 
 Signed-off-by: red-hat-konflux <126015336+red-hat-konflux[bot]@users.noreply.github.com>
-
-- Automerge PRs updating konflux references
-  ([`23f0376`](https://github.com/RedHatInsights/insights-sha-extractor/commit/23f0376248a8b12a6c4ece7a2ecc3ab4882cabe1))
-
-- Internal cert shouldn't be needed (allows Konflux build)
-  ([`7dc918f`](https://github.com/RedHatInsights/insights-sha-extractor/commit/7dc918fce5e9391042c5e2ce36940a4939e48cdc))
