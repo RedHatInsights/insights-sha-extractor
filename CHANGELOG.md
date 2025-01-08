@@ -1,6 +1,25 @@
 # CHANGELOG
 
 
+## v1.0.28 (2025-01-08)
+
+### Chores
+
+- Pin python-json-logger to older version
+  ([`66fe043`](https://github.com/RedHatInsights/insights-sha-extractor/commit/66fe04362ab89fdbbb3094455a0fadcbe451a144))
+
+newer version has incorrect dependencies and app fails with ``` File
+  /sha-extractor-venv/lib64/python3.11/site-packages/pythonjsonlogger/utils.py, line 38, in
+  package_is_available raise MissingPackageError(name, extras_name)
+  pythonjsonlogger.exception.MissingPackageError: The 'msgspec' package is required but could not be
+  found. ```
+
+- **deps**: Update constraints file
+  ([`bf77a3c`](https://github.com/RedHatInsights/insights-sha-extractor/commit/bf77a3c22148acf5b96b18ed398a0d9823e15a1e))
+
+RHINENG-14414
+
+
 ## v1.0.27 (2025-01-04)
 
 ### Chores
