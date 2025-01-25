@@ -1,6 +1,16 @@
 # CHANGELOG
 
 
+## v1.0.31 (2025-01-25)
+
+### Chores
+
+- **deps**: Update konflux references
+  ([`f058beb`](https://github.com/RedHatInsights/insights-sha-extractor/commit/f058beb5373448ebb3e374a3712c6c2a4ccc066d))
+
+Signed-off-by: red-hat-konflux <126015336+red-hat-konflux[bot]@users.noreply.github.com>
+
+
 ## v1.0.30 (2025-01-18)
 
 ### Chores
