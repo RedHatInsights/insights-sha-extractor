@@ -1,6 +1,14 @@
 # CHANGELOG
 
 
+## v1.0.37 (2025-03-04)
+
+### Bug Fixes
+
+- **license**: Add NOTICE file specifying Red Hat as the owner
+  ([`16e0080`](https://github.com/RedHatInsights/insights-sha-extractor/commit/16e0080d38f344b54c38aee9f803ee9c33e90d28))
+
+
 ## v1.0.36 (2025-03-01)
 
 ### Chores
