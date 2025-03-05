@@ -1,6 +1,14 @@
 # CHANGELOG
 
 
+## v1.0.38 (2025-03-05)
+
+### Chores
+
+- Update github actions
+  ([`99730c5`](https://github.com/RedHatInsights/insights-sha-extractor/commit/99730c5a02bb1b3359e55051d4c2ac6c79349f38))
+
+
 ## v1.0.37 (2025-03-04)
 
 ### Bug Fixes
