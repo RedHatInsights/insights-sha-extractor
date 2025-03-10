@@ -18,7 +18,7 @@
 
 ## Description
 
-Insights SHA Extractor service intends to retrieve Insights gathered archives
+Insights  SHA Extractor service intends to retrieve Insights gathered archives
 and export SHAs of images found in the archive. SHAs of images are published
 back in order to be consumed by other services. Insights SHA Extractor is based
 on Insights Core Messaging framework.
