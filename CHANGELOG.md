@@ -1,6 +1,16 @@
 # CHANGELOG
 
 
+## v1.0.39 (2025-03-11)
+
+### Chores
+
+- **deps**: Update jinja
+  ([`311cb24`](https://github.com/RedHatInsights/insights-sha-extractor/commit/311cb247addb804bd415df829a56158cbd0f6c85))
+
+RHINENG-16477
+
+
 ## v1.0.38 (2025-03-05)
 
 ### Chores
