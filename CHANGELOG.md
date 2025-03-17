@@ -1,6 +1,15 @@
 # CHANGELOG
 
 
+## v1.0.41 (2025-03-17)
+
+### Continuous Integration
+
+- Extending original config overrides the global schedule by adding schedule for each package
+  manager
+  ([`deb100b`](https://github.com/RedHatInsights/insights-sha-extractor/commit/deb100b29ccac75bf4c92088f363e17c8fa467ba))
+
+
 ## v1.0.40 (2025-03-15)
 
 ### Chores
