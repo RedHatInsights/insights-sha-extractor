@@ -9,7 +9,6 @@
     "automergeStrategy": "rebase",
     "automergeType": "pr",
     "enabled": true,
-    "ignoreTests": true,
     "platformAutomerge": true
   }
 }
