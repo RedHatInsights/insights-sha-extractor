@@ -1,6 +1,17 @@
 # CHANGELOG
 
 
+## v1.0.51 (2025-05-21)
+
+### Continuous Integration
+
+- **konflux**: Don't automerge when tests are failing
+  ([`255b65d`](https://github.com/RedHatInsights/insights-sha-extractor/commit/255b65d8053a7f592fe172acce96e8e2ca84a68b))
+
+- **konflux**: Revert to older sast-coverity-check
+  ([`b6d8259`](https://github.com/RedHatInsights/insights-sha-extractor/commit/b6d8259c281a7cfb6b8af931ac4a3cfa7adcd0ad))
+
+
 ## v1.0.50 (2025-05-17)
 
 ### Chores
