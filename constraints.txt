@@ -1,24 +1,24 @@
 aiobotocore==2.13.3
-aiohappyeyeballs==2.4.4
-aiohttp==3.11.11
+aiohappyeyeballs==2.6.1
+aiohttp==3.12.14
 aioitertools==0.12.0
-aiosignal==1.3.2
-app-common-python==0.2.7
+aiosignal==1.4.0
+app-common-python==0.2.8
 attrs==24.3.0
 boto3==1.34.103
 botocore==1.34.162
-CacheControl==0.14.2
-ccx-messaging @ git+https://github.com/RedHatInsights/insights-ccx-messaging@2bfb4a0cbdf70ab31deed82925220f0972a01a0b
+CacheControl==0.14.3
+ccx-messaging @ git+https://github.com/RedHatInsights/insights-ccx-messaging@30c5af0fafa6b7216d9a1fd793c060abf79288f9
 certifi==2024.12.14
 charset-normalizer==3.4.1
 confluent-kafka==2.8.0
 defusedxml==0.7.1
 filelock==3.16.1
 frozenlist==1.5.0
-fsspec==2024.12.0
+fsspec==2025.7.0
 idna==3.10
-insights-core==3.5.0
-insights-core-messaging @ git+https://github.com/RedHatInsights/insights-core-messaging@5b71d26d5ab88ed49c460b5fe42a52f7d8f35700
+insights-core==3.6.2
+insights-core-messaging @ git+https://github.com/RedHatInsights/insights-core-messaging@00b40677bff2aca12fdbcd86e6caff5a978ac938
 Jinja2==3.1.6
 jmespath==1.0.1
 jsonschema==4.23.0
@@ -33,14 +33,15 @@ propcache==0.2.1
 python-dateutil==2.9.0.post0
 python-json-logger==2.0.7
 PyYAML==6.0.2
-redis==5.2.1
+redis==6.2.0
 referencing==0.35.1
 requests==2.32.3
 rpds-py==0.22.3
-s3fs==2024.12.0
+s3fs==2025.7.0
 s3transfer==0.10.4
 sentry-sdk==2.19.2
 six==1.17.0
+typing_extensions==4.14.1
 urllib3==2.3.0
 watchtower==3.3.1
 wrapt==1.17.0
