@@ -7,5 +7,21 @@
     "automergeType": "pr",
     "enabled": true,
     "platformAutomerge": true
-  }
+  },
+  "packageRules": [
+    {
+      "matchManagers": [
+        "pip_requirements"
+      ],
+      "groupName": "requirements.txt",
+      "groupSlug": "pip-requirements"
+    },
+    {
+      "matchManagers": [
+        "dockerfile"
+      ],
+      "groupName": "dockerfiles",
+      "groupSlug": "dockerfiles"
+    }
+  ]
 }
