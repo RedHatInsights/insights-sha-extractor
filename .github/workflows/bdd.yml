@@ -9,9 +9,9 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v3
       - name: Retrieve Docker compose file
-        run: wget -O docker-compose.yml https://raw.githubusercontent.com/RedHatInsights/insights-behavioral-spec/main/docker-compose.yml
+        run: wget -O docker-compose.yml https://raw.githubusercontent.com/RedHatInsights/insights-behavioral-spec/3b8546efa8c658f544df5c89e1165b25b0cdc32b/docker-compose.yml
       - name: Retrieve BDD runner
-        run: wget -O bdd_runner.sh https://raw.githubusercontent.com/RedHatInsights/insights-behavioral-spec/main/run_in_docker.sh && chmod +x bdd_runner.sh
+        run: wget -O bdd_runner.sh https://raw.githubusercontent.com/RedHatInsights/insights-behavioral-spec/3b8546efa8c658f544df5c89e1165b25b0cdc32b/run_in_docker.sh && chmod +x bdd_runner.sh
       - name: Run BDD
         run: ./bdd_runner.sh insights-sha-extractor-tests .
       - name: Set container ID as env
