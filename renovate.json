@@ -11,10 +11,10 @@
   "packageRules": [
     {
       "matchManagers": [
-        "pip_requirements"
+        "poetry"
       ],
-      "groupName": "requirements.txt",
-      "groupSlug": "pip-requirements"
+      "groupName": "poetry dependencies",
+      "groupSlug": "poetry-dependencies"
     },
     {
       "matchManagers": [

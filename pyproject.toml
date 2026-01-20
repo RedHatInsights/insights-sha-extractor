@@ -20,19 +20,17 @@ classifiers = [
     "Operating System :: POSIX :: Linux",
     "Programming Language :: Python",
     "Programming Language :: Python :: 3",
-    "Programming Language :: Python :: 3.8",
-    "Programming Language :: Python :: 3.9",
-    "Programming Language :: Python :: 3.10",
-    "Programming Language :: Python :: 3.11",
     "Programming Language :: Python :: 3.12"
 ]
 
-requires-python = ">= 3.8"
-dependencies = [
-    "app-common-python>=0.2.5",
-    "ccx-messaging>=4.3.2",
-    "insights-core-messaging>=1.2.20"
-]
+requires-python = ">= 3.12"
+
+[tool.poetry.dependencies]
+python = "^3.12"
+app-common-python = ">=0.2.5"
+ccx-messaging = "4.3.3"
+insights-core-messaging = ">=1.2.20"
+python-json-logger = ">=2.0.7,<3.0.0"
 
 [tool.setuptools.packages.find]
 include = ["insights_sha_extractor"]
@@ -43,16 +41,5 @@ text = "Apache-2.0"
 [project.urls]
 Homepage = "https://github.com/RedHatInsights/insights-sha-extractor/"
 
-[project.optional-dependencies]
-dev = [
-    "black",
-    "coverage",
-    "freezegun",
-    "pycco",
-    "pycodestyle",
-    "pylint",
-    "pytest",
-    "pytest-cov"
-]
 
 [tool.setuptools_scm]
