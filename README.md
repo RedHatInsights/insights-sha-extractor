@@ -1,8 +1,8 @@
 # Insights SHA Extractor
 
 
-[![Python 3.7](https://img.shields.io/badge/python-3.7-blue.svg)](https://www.python.org/downloads/release/python-370/)
-[![GitHub Pages](https://img.shields.io/badge/%20-GitHub%20Pages-informational)](https://supreme-garbanzo-c43cccab.pages.github.io/)
+[![Python 3.11](https://img.shields.io/badge/python-3.11-blue.svg)](https://www.python.org/downloads/release/python-3110/)
+[![GitHub Pages](https://img.shields.io/badge/%20-GitHub%20Pages-informational)](https://redhatinsights.github.io/insights-sha-extractor/)
 [![License](https://img.shields.io/badge/license-Apache-blue)](https://github.com/RedHatInsights/insights-sha-extractor/-/blob/master/LICENSE)
 [![GitHub release](https://img.shields.io/github/release/RedHatInsights/insights-sha-extractor.svg)](https://github.com/RedHatInsights/insights-sha-extractor/releases/latest)
 
@@ -25,7 +25,7 @@ on Insights Core Messaging framework.
 
 ## Documentation
 
-Documentation is hosted on Github Pages <https://supreme-garbanzo-c43cccab.pages.github.io/>.
+Documentation is hosted on Github Pages <https://redhatinsights.github.io/insights-sha-extractor/>.
 
 ## Makefile targets
 
