@@ -160,8 +160,6 @@ objects:
         packages:
           - ccx_messaging
           - insights.specs.default
-          - pythonjsonlogger
-          - pythonjsonlogger.jsonlogger
       service:
         extract_timeout:
         extract_tmp_dir:
@@ -221,7 +219,7 @@ objects:
             brief:
               format: "%(message)s"
             json:
-              (): "pythonjsonlogger.jsonlogger.JsonFormatter"
+              (): "pythonjsonlogger.json.JsonFormatter"
               format: "%(filename)s %(lineno)d %(process)d %(levelname)s %(asctime)s %(name)s %(message)s"
             cloudwatch:
               format: "%(filename)s %(levelname)s %(asctime)s %(name)s %(hostname)s %(mac_address)s %(message)s"
