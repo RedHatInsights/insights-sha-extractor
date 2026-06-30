@@ -1,4 +1,4 @@
-FROM registry.access.redhat.com/ubi9/ubi-minimal:9.8-1782366411
+FROM registry.access.redhat.com/ubi9/ubi-minimal:9.8-1782797275
 
 ENV CONFIG_PATH=/sha-extractor/config.yaml \
     VENV=/sha-extractor-venv \
