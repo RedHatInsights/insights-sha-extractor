@@ -23,6 +23,7 @@ RUN microdnf install --nodocs -y python312 python3.12-pip python3.12-devel unzip
     microdnf remove -y git-core && \
     microdnf clean all && \
     rpm -e --nodeps sqlite-libs krb5-libs libxml2 readline pam openssh openssh-clients && \
+    pip uninstall -y poetry poetry-plugin-export virtualenv && \
     chmod -R g=u $HOME $VENV /etc/passwd && \
     chgrp -R 0 $HOME $VENV
 
