@@ -12,8 +12,8 @@ ENV PATH="$VENV/bin:$PATH"
 
 COPY . $HOME
 
-RUN microdnf install --nodocs -y python312 python3.12-pip python3.12-devel unzip tar git-core && \
-    python3.12 -m venv $VENV && \
+RUN microdnf install --nodocs -y python3.14 python3.14-pip python3.14-devel unzip tar git-core && \
+    python3.14 -m venv $VENV && \
     pip install --no-cache-dir -U pip setuptools && \
     pip install --no-cache-dir --upgrade poetry~=2.0 poetry-plugin-export && \
     poetry config virtualenvs.create false && \
