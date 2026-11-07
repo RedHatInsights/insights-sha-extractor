@@ -34,7 +34,7 @@ dependencies = [
 ]
 
 [tool.poetry.dependencies]
-python = ">=3.14,<3.15"
+python = ">=3.15,<3.16"
 app-common-python = ">=0.2.5"
 ccx-messaging = "4.3.6"
 insights-core-messaging = ">=1.2.20"
